@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-navy: #071b34;
+  --color-navy-800: #0a2547;
+  --color-navy-700: #0e315e;
+  --color-royal: #0d5cff;
+  --color-royal-600: #0a4be0;
+  --color-cyan: #00c2ff;
+  --color-mist: #f7f9fc;
+  --color-ink: #101828;
+  --color-success: #00c48c;
+
+  --font-heading: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+  --animate-marquee: marquee 36s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-grid-pan: grid-pan 24s linear infinite;
+  --animate-beam: beam 9s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-16px); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.9); opacity: 0; }
+  }
+  @keyframes grid-pan {
+    from { background-position: 0 0; }
+    to { background-position: 64px 64px; }
+  }
+  @keyframes beam {
+    0%, 100% { opacity: 0.35; transform: translateX(-8%) rotate(12deg); }
+    50% { opacity: 0.7; transform: translateX(8%) rotate(12deg); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-mist);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+  background-color: var(--color-navy);
+  color: #e6ecf5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--color-royal);
+  color: #fff;
+}
+
+/* ---- Reusable premium primitives ---- */
+
+.gradient-text {
+  background: linear-gradient(92deg, var(--color-royal) 0%, var(--color-cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-brand {
+  background: linear-gradient(120deg, var(--color-royal) 0%, var(--color-cyan) 100%);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(16, 24, 40, 0.08);
+}
+.dark .glass {
+  background: rgba(10, 37, 71, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark {
+  background: rgba(7, 27, 52, 0.5);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-hover {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, border-color 0.45s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -16px rgba(7, 27, 52, 0.22);
+}
+
+/* Blueprint engineering grid backdrop */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(0, 194, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 194, 255, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.blueprint-grid-light {
+  background-image:
+    linear-gradient(rgba(13, 92, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 92, 255, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Cinematic hero backdrop */
+.hero-scene {
+  background:
+    radial-gradient(1100px 520px at 82% -10%, rgba(0, 194, 255, 0.22), transparent 60%),
+    radial-gradient(900px 620px at 8% 108%, rgba(13, 92, 255, 0.3), transparent 60%),
+    linear-gradient(180deg, #071b34 0%, #0a2547 55%, #071b34 100%);
+}
+
+.light-beam {
+  position: absolute;
+  width: 42rem;
+  height: 200%;
+  top: -50%;
+  background: linear-gradient(90deg, transparent, rgba(0, 194, 255, 0.08), transparent);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+/* Thin technical rule used under section eyebrows */
+.tech-rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-cyan), transparent);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(13, 92, 255, 0.35);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(13, 92, 255, 0.6); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
