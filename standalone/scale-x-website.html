@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scale X Process & Engineering — From Idea to Industry</title>
+<meta name="description" content="Scale X Process & Engineering is a global industrial consultancy providing complete turnkey solutions for manufacturing industries — from concept, feasibility studies, engineering, approvals, construction, commissioning, to commercial production." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #071B34; --navy-800: #0A2547; --navy-700: #0E315E;
+    --royal: #0D5CFF; --cyan: #00C2FF; --mist: #F7F9FC;
+    --ink: #101828; --success: #00C48C;
+    --bg: var(--mist); --surface: #FFFFFF; --text: var(--ink);
+    --muted: #5A6B82; --line: rgba(16,24,40,.10);
+  }
+  html.dark {
+    --bg: var(--navy); --surface: var(--navy-800); --text: #E6ECF5;
+    --muted: #94A6BE; --line: rgba(255,255,255,.10);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    -webkit-font-smoothing: antialiased; transition: background .4s, color .4s;
+  }
+  h1,h2,h3,h4 { font-family: 'Manrope', system-ui, sans-serif; letter-spacing: -.02em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+  ::selection { background: var(--royal); color: #fff; }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .grad-text { background: linear-gradient(92deg, var(--royal), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .grad-bg { background: linear-gradient(120deg, var(--royal), var(--cyan)); }
+
+  .blueprint {
+    background-image: linear-gradient(rgba(0,194,255,.07) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,194,255,.07) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .scene {
+    background: radial-gradient(1100px 520px at 82% -10%, rgba(0,194,255,.22), transparent 60%),
+                radial-gradient(900px 620px at 8% 108%, rgba(13,92,255,.3), transparent 60%),
+                linear-gradient(180deg, #071B34 0%, #0A2547 55%, #071B34 100%);
+    color: #E6ECF5;
+  }
+  .glass-dark { background: rgba(7,27,52,.5); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,.1); }
+
+  /* ---------- Navbar ---------- */
+  nav#topnav {
+    position: fixed; inset: 0 0 auto 0; z-index: 60; transition: background .4s, box-shadow .4s;
+  }
+  nav#topnav.scrolled { background: rgba(7,27,52,.72); backdrop-filter: blur(18px); box-shadow: 0 8px 32px rgba(7,27,52,.35); }
+  nav#topnav .bar { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-name { font-family: 'Manrope'; font-weight: 800; font-size: 18px; color: #fff; line-height: 1; }
+  .logo-sub { font-size: 9px; letter-spacing: .22em; color: #8FA3BC; text-transform: uppercase; margin-top: 3px; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a { color: #D5DEEA; font-size: 14px; font-weight: 500; padding: 8px 14px; border-radius: 99px; transition: color .2s; }
+  .nav-links a:hover { color: #fff; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; border-radius: 99px; padding: 13px 28px;
+    font-size: 14px; font-weight: 600; font-family: 'Inter'; cursor: pointer; border: none; transition: filter .25s, transform .25s; }
+  .btn-primary { background: linear-gradient(120deg, var(--royal), var(--cyan)); color: #fff; box-shadow: 0 12px 30px rgba(13,92,255,.35); }
+  .btn-primary:hover { filter: brightness(1.12); }
+  .btn-ghost { background: rgba(7,27,52,.5); border: 1px solid rgba(255,255,255,.14); color: #fff; backdrop-filter: blur(12px); }
+  .btn-ghost:hover { border-color: rgba(0,194,255,.5); }
+  #hamburger { display: none; background: none; border: 1px solid rgba(255,255,255,.2); border-radius: 99px; width: 42px; height: 42px; color: #fff; font-size: 18px; cursor: pointer; }
+  #mobile-menu { display: none; background: rgba(7,27,52,.95); backdrop-filter: blur(18px); padding: 12px 24px 20px; }
+  #mobile-menu a { display: block; color: #D5DEEA; padding: 12px 10px; font-size: 15px; border-radius: 12px; }
+  #theme-btn { background: none; border: 1px solid rgba(255,255,255,.2); border-radius: 99px; width: 38px; height: 38px; color: #E6ECF5; cursor: pointer; font-size: 15px; }
+
+  /* ---------- Hero ---------- */
+  header.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; padding: 130px 0 80px; }
+  .hero .badge { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; padding: 9px 18px; border-radius: 99px; color: #D5DEEA; }
+  .hero .badge .dot { width: 8px; height: 8px; border-radius: 99px; background: var(--success); }
+  .hero h1 { font-size: clamp(2.4rem, 6.5vw, 4.6rem); font-weight: 800; color: #fff; line-height: 1.08; max-width: 900px; margin-top: 26px; }
+  .hero h1 .w { display: inline-block; opacity: 0; transform: translateY(34px); animation: rise .7s cubic-bezier(.22,1,.36,1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .hero p.sub { max-width: 620px; margin-top: 22px; font-size: 17px; line-height: 1.65; color: #B9C6D8; }
+  .hero .ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 34px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.1); border-radius: 18px; overflow: hidden; max-width: 760px; margin-top: 60px; }
+  .stats > div { background: rgba(7,27,52,.7); padding: 22px 24px; backdrop-filter: blur(8px); }
+  .stats b { font-family: 'Manrope'; font-size: 34px; font-weight: 800; color: #fff; }
+  .stats span { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #8FA3BC; margin-top: 4px; }
+  .skyline { position: absolute; bottom: 0; left: 0; width: 100%; pointer-events: none; color: rgba(0,194,255,.25); }
+  .orb { position: absolute; border-radius: 99px; filter: blur(60px); pointer-events: none; animation: floaty 9s ease-in-out infinite; }
+  @keyframes floaty { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-18px);} }
+
+  /* ---------- Sections ---------- */
+  section { padding: 96px 0; }
+  .eyebrow { display: flex; align-items: center; gap: 12px; justify-content: center; font-size: 12px; font-weight: 600;
+    letter-spacing: .28em; text-transform: uppercase; color: var(--royal); }
+  html.dark .eyebrow { color: var(--cyan); }
+  .eyebrow::after { content: ""; width: 56px; height: 1px; background: linear-gradient(90deg, var(--cyan), transparent); }
+  .sec-title { text-align: center; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin: 16px auto 0; max-width: 760px; }
+  .sec-sub { text-align: center; color: var(--muted); max-width: 640px; margin: 18px auto 0; font-size: 16px; line-height: 1.65; }
+  .sec-head { margin-bottom: 56px; }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 30px;
+    transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s; }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -16px rgba(7,27,52,.22); }
+  .icon-tile { width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(120deg, var(--royal), var(--cyan)); color: #fff; box-shadow: 0 10px 24px rgba(13,92,255,.25); font-size: 22px; }
+
+  /* marquee */
+  .marquee-band { background: var(--surface); border-block: 1px solid var(--line); padding: 44px 0; }
+  .marquee-label { text-align: center; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+  .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+  .marquee-track { display: flex; gap: 56px; width: max-content; animation: scroll 36s linear infinite; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  .marquee-track span { white-space: nowrap; font-family: 'Manrope'; font-weight: 700; font-size: 18px; color: var(--muted); display: flex; gap: 10px; align-items: center; }
+
+  .grid { display: grid; gap: 24px; }
+  .g2 { grid-template-columns: repeat(2, 1fr); }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  .g5 { grid-template-columns: repeat(5, 1fr); }
+
+  .svc h3 { font-size: 19px; margin-top: 20px; }
+  .svc p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 10px; }
+  .svc ul { list-style: none; margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+  .svc li { font-size: 13px; display: flex; align-items: center; gap: 9px; }
+  .svc li::before { content: ""; width: 6px; height: 6px; border-radius: 99px; background: var(--cyan); flex-shrink: 0; }
+
+  .ind { text-align: center; padding: 24px 16px; }
+  .ind .icon-tile { margin: 0 auto; background: rgba(13,92,255,.08); color: var(--royal); box-shadow: none; }
+  html.dark .ind .icon-tile { background: rgba(0,194,255,.1); color: var(--cyan); }
+  .ind h4 { font-size: 14px; margin-top: 14px; }
+
+  /* timeline */
+  .timeline { position: relative; max-width: 860px; margin: 0 auto; }
+  .timeline::before { content: ""; position: absolute; left: 20px; top: 0; bottom: 0; width: 1px; background: var(--line); }
+  .t-fill { position: absolute; left: 20px; top: 0; width: 1px; height: 0; background: linear-gradient(180deg, var(--royal), var(--cyan)); transition: height .2s linear; }
+  .t-item { position: relative; padding: 0 0 36px 64px; }
+  .t-num { position: absolute; left: 0; top: 2px; width: 40px; height: 40px; border-radius: 99px; background: var(--surface);
+    border: 1px solid rgba(13,92,255,.3); color: var(--royal); font-family: 'Manrope'; font-weight: 800; font-size: 12px;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(7,27,52,.12); }
+  html.dark .t-num { color: var(--cyan); }
+  .t-item h3 { font-size: 17px; }
+  .t-item p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 6px; }
+
+  /* projects */
+  .proj { overflow: hidden; padding: 0; display: flex; flex-direction: column; }
+  .proj-head { height: 150px; position: relative; display: flex; align-items: flex-end; justify-content: space-between; padding: 18px; }
+  .chip { font-size: 11px; font-weight: 600; padding: 6px 14px; border-radius: 99px; background: rgba(7,27,52,.55); color: var(--cyan); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(8px); }
+  .chip.dim { color: #C6D2E2; }
+  .proj-body { padding: 26px; display: flex; flex-direction: column; flex: 1; }
+  .proj h3 { font-size: 19px; }
+  .proj .desc { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 10px; }
+  .proj dl { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; font-size: 14px; }
+  .proj dt { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  .proj dd { font-weight: 600; margin-top: 2px; }
+  .proj details { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 14px; }
+  .proj summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--royal); list-style: none; }
+  html.dark .proj summary { color: var(--cyan); }
+  .proj details p { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin-top: 10px; }
+  .proj details b { color: var(--text); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; margin-top: 12px; color: var(--royal); }
+  html.dark .proj details b { color: var(--cyan); }
+  .proj blockquote { background: var(--bg); border-radius: 14px; padding: 14px; font-style: italic; font-size: 13.5px; margin-top: 14px; color: var(--muted); }
+  .filters { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 40px; align-items: end; }
+  .filters label { font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); display: block; }
+  .filters select { margin-top: 8px; padding: 10px 18px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-size: 14px; font-weight: 500; }
+
+  /* testimonials */
+  #testi { text-align: center; max-width: 760px; margin: 0 auto; }
+  #testi blockquote { font-size: 20px; font-weight: 500; line-height: 1.6; color: #fff; min-height: 130px; }
+  #testi .who b { display: block; font-family: 'Manrope'; color: #fff; margin-top: 22px; }
+  #testi .who span { color: #8FA3BC; font-size: 14px; }
+  .dots { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+  .dots button { height: 8px; width: 8px; border-radius: 99px; border: none; background: rgba(255,255,255,.25); cursor: pointer; transition: all .3s; }
+  .dots button.on { width: 32px; background: var(--cyan); }
+
+  .art { display: flex; flex-direction: column; }
+  .art .meta { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); }
+  .art .cat { background: rgba(13,92,255,.08); color: var(--royal); font-weight: 600; padding: 6px 14px; border-radius: 99px; }
+  html.dark .art .cat { background: rgba(0,194,255,.1); color: var(--cyan); }
+  .art h3 { font-size: 17px; line-height: 1.4; margin-top: 16px; }
+  .art p { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 10px; flex: 1; }
+  .art .read { font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+  /* faq */
+  .faq { max-width: 720px; margin: 0 auto; display: grid; gap: 14px; }
+  .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px 24px; }
+  .faq summary { cursor: pointer; font-family: 'Manrope'; font-weight: 700; font-size: 15.5px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  .faq summary::after { content: "+"; font-size: 20px; color: var(--royal); transition: transform .3s; }
+  html.dark .faq summary::after { color: var(--cyan); }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { color: var(--muted); font-size: 14px; line-height: 1.65; margin-top: 12px; }
+
+  /* contact */
+  .contact-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; }
+  .field label { display: block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 13px 16px; border-radius: 14px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--text); font-family: 'Inter'; font-size: 14px; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--royal); box-shadow: 0 0 0 3px rgba(13,92,255,.15); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .office { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+  .office h4 { font-size: 14px; display: flex; gap: 8px; align-items: center; }
+  .office .role { font-size: 10.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-top: 3px; }
+  .office p { font-size: 12.5px; color: var(--muted); line-height: 1.5; margin-top: 8px; }
+
+  /* CTA band */
+  .cta-band { border-radius: 28px; padding: 72px 40px; text-align: center; position: relative; overflow: hidden; }
+  .cta-band h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); color: #fff; max-width: 620px; margin: 0 auto; }
+  .cta-band p { color: #B9C6D8; margin-top: 14px; font-size: 17px; }
+  .cta-band .ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+
+  /* footer */
+  footer { background: var(--navy); color: #B9C6D8; position: relative; overflow: hidden; }
+  footer .cols { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; padding: 72px 0 48px; position: relative; }
+  footer h5 { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #6B7F99; margin-bottom: 18px; }
+  footer li { list-style: none; margin-top: 10px; font-size: 14px; }
+  footer li a:hover { color: var(--cyan); }
+  footer .fine { border-top: 1px solid rgba(255,255,255,.1); padding: 26px 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #6B7F99; position: relative; }
+
+  /* floaters */
+  .floaters { position: fixed; right: 24px; bottom: 24px; z-index: 50; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+  #toTop { width: 44px; height: 44px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--text);
+    cursor: pointer; font-size: 16px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; transform: translateY(10px); box-shadow: 0 10px 24px rgba(7,27,52,.18); }
+  #toTop.show { opacity: 1; pointer-events: auto; transform: none; }
+  #wa { width: 54px; height: 54px; border-radius: 99px; background: var(--success); display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 14px 30px rgba(0,196,140,.4); position: relative; transition: transform .25s; }
+  #wa:hover { transform: scale(1.06); }
+  #wa::before { content: ""; position: absolute; inset: 0; border-radius: 99px; background: var(--success); animation: ring 2.4s cubic-bezier(.4,0,.6,1) infinite; }
+  @keyframes ring { 0% { transform: scale(1); opacity: .6; } 100% { transform: scale(1.9); opacity: 0; } }
+
+  /* cookie */
+  #cookie { position: fixed; left: 24px; bottom: 24px; z-index: 70; max-width: 360px; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 18px; padding: 20px; box-shadow: 0 24px 60px rgba(7,27,52,.3); display: none; }
+  #cookie.show { display: block; }
+  #cookie p { font-size: 13.5px; line-height: 1.55; }
+  #cookie .row { display: flex; gap: 10px; margin-top: 14px; }
+  #cookie button { border-radius: 99px; padding: 9px 18px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--line); background: none; color: var(--text); }
+  #cookie button.yes { background: linear-gradient(120deg, var(--royal), var(--cyan)); color: #fff; border: none; }
+
+  /* reveal on scroll */
+  .rv { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+  .rv.in { opacity: 1; transform: none; }
+
+  @media (max-width: 980px) {
+    .g3, .g4, .g5 { grid-template-columns: repeat(2, 1fr); }
+    .g2, .contact-grid, .form-grid { grid-template-columns: 1fr; }
+    .nav-links, #nav-cta { display: none; }
+    #hamburger { display: block; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    footer .cols { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) { .g3, .g4, .g5 { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    .hero h1 .w { opacity: 1; transform: none; }
+    .rv { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="topnav">
+  <div class="wrap bar">
+    <a href="#home" class="logo" aria-label="Scale X home">
+      <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0D5CFF"/><stop offset="100%" stop-color="#00C2FF"/>
+        </linearGradient></defs>
+        <rect x="1.5" y="1.5" width="37" height="37" rx="10" fill="none" stroke="url(#lg)" stroke-width="2"/>
+        <path d="M13 27L27 13M13 13l5.2 5.2M27 27l-5.2-5.2" stroke="url(#lg)" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <span><span class="logo-name">SCALE <span class="grad-text">X</span></span><span class="logo-sub" style="display:block">Process &amp; Engineering</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a><a href="#services">Services</a><a href="#industries">Industries</a>
+      <a href="#process">Process</a><a href="#projects">Projects</a><a href="#knowledge">Knowledge</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button id="theme-btn" aria-label="Toggle dark mode">◐</button>
+      <a href="#contact" class="btn btn-primary" id="nav-cta" style="padding:11px 22px">Start Your Project</a>
+      <button id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <div id="mobile-menu">
+    <a href="#about">About</a><a href="#services">Services</a><a href="#industries">Industries</a>
+    <a href="#process">Process</a><a href="#projects">Projects</a><a href="#knowledge">Knowledge</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero scene" id="home">
+  <div class="blueprint" style="position:absolute;inset:0" aria-hidden="true"></div>
+  <div class="orb" style="right:12%;top:18%;width:160px;height:160px;background:rgba(13,92,255,.2)" aria-hidden="true"></div>
+  <div class="orb" style="left:8%;top:42%;width:220px;height:220px;background:rgba(0,194,255,.1);animation-delay:-4s" aria-hidden="true"></div>
+  <svg class="skyline" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M40 360V240l70 40v-40l70 40v-40l80 46v74"/><path d="M120 240v-60h24v46"/>
+      <path d="M300 360V190h90v170M320 190v-50h18l6 50M370 190v-36h16v36"/>
+      <path d="M470 360V250l60 34v-34l60 34v-34l70 40v70"/>
+      <path d="M700 360V150h110v210M726 150v-64h20l8 64M780 150v-42h18v42"/>
+      <path d="M880 360V262h120v98M910 262v-40h22v40M950 262v-52h20v52"/>
+      <path d="M1060 360V220l64 36v-36l64 36v-36l76 44v96"/><path d="M1280 360V180h80v180M1300 180v-56h16l6 56"/>
+      <path d="M560 250V96h6v154M560 104h150l-24 22M710 104v26"/>
+      <path d="M1130 220V80h6v140M1130 88h-118l20 20M1012 88v22"/>
+      <ellipse cx="230" cy="330" rx="34" ry="10"/><path d="M196 330v-52a34 14 0 0 1 68 0v52"/>
+    </g>
+    <circle cx="563" cy="92" r="3" fill="#00C2FF"><animate attributeName="opacity" values="1;.15;1" dur="2.2s" repeatCount="indefinite"/></circle>
+    <circle cx="1133" cy="76" r="3" fill="#00C2FF"><animate attributeName="opacity" values=".15;1;.15" dur="2.8s" repeatCount="indefinite"/></circle>
+  </svg>
+  <div class="wrap" style="position:relative">
+    <span class="badge glass-dark"><span class="dot"></span> Global Turnkey Industrial Consultancy — From Idea to Industry</span>
+    <h1 id="headline"></h1>
+    <p class="sub">From feasibility studies to commercial production, Scale X delivers complete engineering and industrial consulting solutions for businesses worldwide.</p>
+    <div class="ctas">
+      <a href="#contact" class="btn btn-primary">Start Your Project →</a>
+      <a href="#contact" class="btn btn-ghost">▶ Book Free Consultation</a>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<!-- ============ CLIENTS ============ -->
+<div class="marquee-band">
+  <div class="wrap">
+    <p class="marquee-label">Trusted by manufacturers worldwide</p>
+    <div class="marquee"><div class="marquee-track" id="clients"></div></div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow" style="justify-content:center">About Scale X</p>
+      <h2 class="sec-title">The single partner behind <span class="grad-text">500+ industrial projects</span></h2>
+      <p class="sec-sub">Scale X Process &amp; Engineering is a global industrial consultancy delivering complete turnkey solutions. From the first feasibility number to the first commercial batch, one accountable team owns your project — concept, approvals, engineering, construction, commissioning, and beyond.</p>
+    </div>
+    <div class="grid g3" id="values"></div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Core Services</p>
+      <h2 class="sec-title">Every discipline your project needs. One roof.</h2>
+      <p class="sec-sub">Sixteen integrated service lines spanning strategy, compliance, engineering, execution, and operations.</p>
+    </div>
+    <div class="grid g2" id="svc-grid"></div>
+  </div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section id="industries">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Industries</p>
+      <h2 class="sec-title">Deep expertise across 30+ manufacturing sectors</h2>
+      <p class="sec-sub">From food processing to renewable energy — sector-specific engineering knowledge, not generic consulting.</p>
+    </div>
+    <div class="grid g5" id="ind-grid"></div>
+  </div>
+</section>
+
+<!-- ============ PROCESS TIMELINE ============ -->
+<section id="process" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Our Process</p>
+      <h2 class="sec-title">From Idea to Industry — one unbroken line</h2>
+      <p class="sec-sub">Eleven stages, one accountable team. Watch how an ambition becomes an operating plant.</p>
+    </div>
+    <div class="timeline" id="timeline"><div class="t-fill" id="t-fill"></div></div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Portfolio</p>
+      <h2 class="sec-title">Proof, poured in <span class="grad-text">concrete and steel</span></h2>
+      <p class="sec-sub">Filter by industry, geography, or completion year — then open any project for the full story.</p>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="grid g2" id="proj-grid"></div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="scene" style="position:relative;overflow:hidden">
+  <div class="blueprint" style="position:absolute;inset:0" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative">
+    <div class="sec-head rv">
+      <p class="eyebrow" style="color:var(--cyan)">Client Voices</p>
+      <h2 class="sec-title" style="color:#fff">Trusted where it matters — on the plant floor</h2>
+    </div>
+    <div id="testi">
+      <blockquote id="t-quote"></blockquote>
+      <div class="who"><b id="t-name"></b><span id="t-role"></span></div>
+      <div class="dots" id="t-dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KNOWLEDGE ============ -->
+<section id="knowledge">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Knowledge Center</p>
+      <h2 class="sec-title">Latest insights from our engineers</h2>
+      <p class="sec-sub">Regulatory updates, whitepapers, and case studies from live projects.</p>
+    </div>
+    <div class="grid g3" id="art-grid" style="margin-bottom:72px"></div>
+    <div class="sec-head rv">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="sec-title">Questions we hear most often</h2>
+    </div>
+    <div class="faq" id="faq"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Get In Touch</p>
+      <h2 class="sec-title">Your project starts <span class="grad-text">with a conversation</span></h2>
+      <p class="sec-sub">Tell us what you want to build. A senior consultant — not a sales script — will respond within one business day.</p>
+    </div>
+    <div class="contact-grid">
+      <form id="inq-form">
+        <div class="form-grid">
+          <div class="field"><label>Full Name *</label><input required name="name" placeholder="Your name"></div>
+          <div class="field"><label>Company</label><input name="company" placeholder="Company name"></div>
+          <div class="field"><label>Work Email *</label><input required type="email" name="email" placeholder="you@company.com"></div>
+          <div class="field"><label>Phone / WhatsApp</label><input name="phone" placeholder="+91 ..."></div>
+        </div>
+        <div class="field" style="margin-top:18px"><label>Tell us about your project *</label>
+          <textarea required name="msg" rows="5" placeholder="Product, capacity, location, timeline — anything you know so far."></textarea></div>
+        <button type="submit" class="btn btn-primary" style="margin-top:20px">Send Inquiry →</button>
+        <p id="form-ok" style="display:none;margin-top:16px;color:var(--success);font-weight:600;font-size:14px">✓ Inquiry received. A senior consultant will contact you within one business day.</p>
+      </form>
+      <div>
+        <div class="grid g2" id="offices"></div>
+        <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px;font-size:14px">
+          <a href="tel:+919876543210" style="color:var(--royal);font-weight:600">📞 +91 98765 43210</a>
+          <a href="mailto:hello@scalexengineering.com" style="color:var(--royal);font-weight:600">✉ hello@scalexengineering.com</a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener" style="color:var(--success);font-weight:600">💬 Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section>
+  <div class="wrap rv">
+    <div class="cta-band scene">
+      <div class="blueprint" style="position:absolute;inset:0" aria-hidden="true"></div>
+      <div style="position:relative">
+        <h2>Ready to Build Your Next Manufacturing Facility?</h2>
+        <p>Let’s turn your vision into reality.</p>
+        <div class="ctas">
+          <a href="#contact" class="btn btn-primary">Schedule Free Consultation →</a>
+          <a href="#contact" class="btn btn-ghost">⬇ Download Company Profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="blueprint" style="position:absolute;inset:0;opacity:.4" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="logo" style="margin-bottom:18px">
+          <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="37" height="37" rx="10" fill="none" stroke="url(#lg)" stroke-width="2"/>
+            <path d="M13 27L27 13M13 13l5.2 5.2M27 27l-5.2-5.2" stroke="url(#lg)" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <span><span class="logo-name">SCALE <span class="grad-text">X</span></span><span class="logo-sub" style="display:block">Process &amp; Engineering</span></span>
+        </div>
+        <p style="font-size:13.5px;line-height:1.65;max-width:320px">Complete turnkey solutions for manufacturing industries — from concept, feasibility, engineering, and approvals to construction, commissioning, and commercial production.</p>
+      </div>
+      <div><h5>Company</h5><ul>
+        <li><a href="#about">About Us</a></li><li><a href="#projects">Projects</a></li>
+        <li><a href="#knowledge">Knowledge Center</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h5>Services</h5><ul>
+        <li><a href="#services">Industrial Consulting</a></li><li><a href="#services">Government Approvals</a></li>
+        <li><a href="#services">Engineering</a></li><li><a href="#services">Commissioning</a></li></ul></div>
+      <div><h5>Global Offices</h5><ul>
+        <li>Mumbai · India</li><li>Dubai · UAE</li><li>Singapore</li><li>Nairobi · Kenya</li></ul></div>
+    </div>
+    <div class="fine">
+      <span>© <span id="yr"></span> Scale X Process &amp; Engineering. All rights reserved.</span>
+      <span style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:99px;background:var(--success)"></span> ISO 9001 · ISO 14001 Certified</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATERS ============ -->
+<div class="floaters">
+  <button id="toTop" aria-label="Back to top">↑</button>
+  <a id="wa" href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="position:relative">
+      <path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/>
+      <path d="M8.5 9.5c0 3.5 2.5 6 6 6l1.5-1.5-2-1.5-1 .8a4.6 4.6 0 0 1-2.3-2.3l.8-1-1.5-2-1.5 1.5z"/>
+    </svg>
+  </a>
+</div>
+
+<div id="cookie">
+  <p>We use cookies to improve your experience and analyse site usage.</p>
+  <div class="row">
+    <button class="yes" onclick="cookieDecide('all')">Accept All</button>
+    <button onclick="cookieDecide('essential')">Essential Only</button>
+  </div>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const DATA = {
+  stats: [[500,"+","Projects Delivered"],[30,"+","Industries Served"],[100,"+","Global Clients"],[15,"+","Years Experience"]],
+  clients: ["NovaFoods Group","Helix Pharma","AquaPure Systems","Vertex Chemicals","SunGrid Renewables","Meridian Dairy","PolyCore Plastics","Ironclad Steelworks","TerraAgro Industries","Crystal Beverages"],
+  values: [
+    ["🎯","One Team, Idea to Industry","A single accountable partner across feasibility, approvals, engineering, and production — no handover gaps."],
+    ["📊","Commercially Fluent Engineering","Every design decision is framed in ROI, payback, and operating cost — the language of your board."],
+    ["🛡️","Regulatory Mastery","300+ statutory approvals secured with a first-cycle success rate above 90%."],
+    ["🌍","Global Procurement Power","Vendor networks across Europe and Asia that routinely recover double-digit capital savings."],
+    ["🚀","Speed Without Shortcuts","Parallel-tracked workstreams that compress schedules while protecting quality and compliance."],
+    ["🌱","Sustainable by Design","Energy, water, and carbon efficiency engineered in from the first layout sketch."]
+  ],
+  services: [
+    ["🎯","Industrial Consulting","Strategic clarity before capital is committed.",["Business planning","Plant feasibility","Market analysis","Risk assessment","Investment planning"]],
+    ["🛡️","Government Approvals","End-to-end licensing and statutory clearances.",["Factory License","Pollution Control","Fire NOC","Building Approval","Electrical Approval","Environmental Clearance","FSSAI","Drug License","BIS","GMP","MSME","Startup India"]],
+    ["📄","Detailed Project Report","Bankable DPRs aligning machinery, capacity, cost, and returns.",["Financial projections","ROI","Machinery planning","Cost estimation","Plant layout","Capacity planning"]],
+    ["⚙️","Engineering","Multi-discipline engineering under one roof.",["Process","Utility","Mechanical","Electrical","Civil","Structural","Piping","HVAC","Automation","Instrumentation"]],
+    ["📐","Plant Design","From 2D layouts to full BIM models.",["2D Layout","3D Plant Design","Factory Layout","BIM","Utility Mapping","Flow Diagrams"]],
+    ["🔍","Equipment Selection","Independent technical evaluation of machinery.",["Vendor comparison","Technical evaluation","Tendering","Procurement","Inspection"]],
+    ["🌐","Machinery Procurement","Global sourcing with factory inspections.",["Global sourcing","Vendor development","Negotiation","Factory inspection","Logistics"]],
+    ["🔧","Installation","Disciplined site execution across all packages.",["Mechanical","Electrical","Utilities","Automation","Pipeline"]],
+    ["🚀","Commissioning","From first trial batch to stable production.",["Trial Production","Performance Testing","Validation","Training","Commercial Production"]],
+    ["🏅","Quality Systems","Certification-ready quality frameworks.",["ISO 9001","ISO 14001","ISO 22000","FSSC 22000","HACCP","GMP","Documentation","Audit Support"]],
+    ["🌱","Sustainability","Lower energy, water, and carbon footprints.",["Solar Systems","Rainwater Harvesting","Wastewater Treatment","Energy Audit","Carbon Reduction","Green Manufacturing"]],
+    ["🔥","Safety","Fire, life, and process safety systems.",["Fire Fighting","Fire Alarm","Emergency Planning","Safety Audit","Risk Assessment","Compliance"]],
+    ["☂️","Insurance","The right industrial cover, negotiated well.",["Industrial Insurance","Machinery Insurance","Risk Assessment","Claim Support"]],
+    ["👥","Human Resources","Technical teams recruited, trained, and ready.",["Technical Recruitment","Plant Staffing","Training","Contract Manpower","Permanent Hiring"]],
+    ["📣","Marketing Support","Go-to-market firepower for industrial products.",["Product Launch","Industrial Branding","Market Entry","Distribution Strategy","Export Support","Digital Marketing"]]
+  ],
+  industries: ["Food Processing","Dairy","Beverages","Pharmaceutical","Chemical","Cosmetics","FMCG","Packaging","Textile","Plastic","Paper","Steel","Automobile","Renewable Energy","Cold Storage","Warehouse","Agro Processing","Animal Feed","Edible Oil","Minerals"],
+  indIcons: ["🍽️","🥛","🥤","💊","⚗️","💄","🛒","📦","🧵","🧴","📃","🏗️","🚗","☀️","❄️","🏬","🌾","🐄","🫒","⛏️"],
+  process: [
+    ["Idea","You bring an ambition. We pressure-test it against markets, margins, and reality."],
+    ["Consultation","Structured discovery with our consultants to frame scope, scale, and strategy."],
+    ["Feasibility","Techno-economic feasibility studies that tell you whether — and how — to proceed."],
+    ["Approvals","Every license, NOC, and clearance secured while engineering moves in parallel."],
+    ["Engineering","Process, mechanical, electrical, civil, and automation design under one roof."],
+    ["Procurement","Machinery sourced globally, inspected at the factory, negotiated in your favour."],
+    ["Construction","Civil and structural works executed with tight supervision and safety discipline."],
+    ["Installation","Equipment erected, piped, wired, and integrated by specialist crews."],
+    ["Commissioning","Trials, performance tests, and validation until the plant meets its numbers."],
+    ["Commercial Production","Stable, certified production — with trained teams running the line."],
+    ["Optimization","Continuous improvement in yield, energy, and cost long after handover."]
+  ],
+  projects: [
+    {t:"Greenfield Dairy Processing Plant",i:"Dairy",c:"India",cap:"200,000 L/day",inv:"$12M",y:2025,
+     d:"Complete turnkey delivery of a modern dairy plant — from feasibility to commercial production in 14 months.",
+     ch:"A tight monsoon-constrained construction window and a fragmented milk collection network.",
+     so:"Parallel-tracked approvals and civil works, pre-fabricated process modules, and a hub-and-spoke chilling network.",
+     te:"Automated CIP, PLC-SCADA process control, energy-recovery pasteurisation", roi:"Payback in 3.2 years",
+     q:"Scale X compressed a two-year project into fourteen months without a single compliance issue.", cl:"Meridian Dairy"},
+    {t:"Pharmaceutical Formulation Facility",i:"Pharmaceutical",c:"UAE",cap:"1.2B tablets/year",inv:"$28M",y:2024,
+     d:"WHO-GMP compliant oral solid dosage facility with validated cleanrooms and full utility qualification.",
+     ch:"Simultaneous compliance with UAE MOH, WHO-GMP, and EU-GMP expectations.",
+     so:"A single harmonised URS and validation master plan covering all three regulatory frameworks.",
+     te:"HVAC zoning to ISO 8/7, purified water loop, BMS-integrated monitoring", roi:"Export approvals 9 months early",
+     q:"The validation documentation was the cleanest our auditors had ever seen from a first submission.", cl:"Helix Pharma"},
+    {t:"Fruit Juice & Beverage Line",i:"Beverages",c:"Kenya",cap:"24,000 bottles/hour",inv:"$8M",y:2024,
+     d:"Aseptic juice processing and PET bottling plant serving East African retail markets.",
+     ch:"Unstable grid power and long equipment lead times from European suppliers.",
+     so:"Hybrid solar-diesel captive power and a dual-vendor procurement strategy that cut lead time by 20 weeks.",
+     te:"Aseptic filling, tubular sterilisation, solar-hybrid captive power", roi:"18% lower unit energy cost than benchmark",
+     q:"They engineered around every constraint our market threw at them.", cl:"Crystal Beverages"},
+    {t:"Specialty Chemicals Complex",i:"Chemical",c:"India",cap:"45,000 MT/year",inv:"$35M",y:2023,
+     d:"Multi-product specialty chemicals plant with zero-liquid-discharge and full environmental clearance.",
+     ch:"Stringent environmental norms in a notified industrial zone with community sensitivity.",
+     so:"ZLD-first process design, closed-loop solvent recovery, and proactive stakeholder engagement.",
+     te:"Zero liquid discharge, multi-effect evaporation, DCS-based batch control", roi:"EC secured in one review cycle",
+     q:"Scale X treated compliance as a design input, not an afterthought. That changed everything.", cl:"Vertex Chemicals"},
+    {t:"Solar Module Manufacturing Plant",i:"Renewable Energy",c:"Vietnam",cap:"1.5 GW/year",inv:"$52M",y:2025,
+     d:"High-automation photovoltaic module assembly plant with Industry 4.0 traceability.",
+     ch:"Aggressive ramp-up targets tied to committed module supply contracts.",
+     so:"Phased commissioning by line, with automation FAT completed at vendor works before shipment.",
+     te:"Automated stringing & lamination, MES traceability, AI visual inspection", roi:"Nameplate capacity in 5 months",
+     q:"Ramp-up was the fastest our investors had seen in the sector.", cl:"SunGrid Renewables"},
+    {t:"Cold Chain & Distribution Hub",i:"Cold Storage",c:"Saudi Arabia",cap:"18,000 pallet positions",inv:"$16M",y:2023,
+     d:"Multi-temperature cold storage and distribution hub serving national food retail networks.",
+     ch:"Extreme ambient temperatures driving energy cost risk across the asset's life.",
+     so:"High-efficiency ammonia refrigeration, envelope optimisation, and rooftop solar offsetting 30% of load.",
+     te:"NH3/CO2 cascade refrigeration, ASRS-ready racking, rooftop solar", roi:"Energy cost 27% below average",
+     q:"An asset our operations team is genuinely proud to run.", cl:"AquaPure Systems"},
+    {t:"Edible Oil Refining Plant",i:"Edible Oil",c:"Indonesia",cap:"600 TPD",inv:"$22M",y:2022,
+     d:"Physical refining complex with fractionation and packaging for domestic and export markets.",
+     ch:"Yield losses and quality drift in the client's existing refining operations.",
+     so:"Modern physical refining with precise degumming and bleaching control, plus operator upskilling.",
+     te:"Physical refining, dry fractionation, automated blending & filling", roi:"Yield improved 1.8 points",
+     q:"The yield improvement alone paid for the engineering fees many times over.", cl:"TerraAgro Industries"},
+    {t:"Automotive Components Plant",i:"Automobile",c:"Mexico",cap:"4M parts/year",inv:"$19M",y:2022,
+     d:"Precision machining and assembly facility supplying North American OEM programs.",
+     ch:"OEM PPAP timelines requiring production-ready quality systems at start-up.",
+     so:"IATF-aligned quality architecture built during design, with measurement systems commissioned alongside machines.",
+     te:"CNC machining cells, inline CMM inspection, lean flow", roi:"PPAP approval on first submission",
+     q:"We hit OEM quality gates on day one. That never happens.", cl:"Ironclad Steelworks"}
+  ],
+  testimonials: [
+    ["Scale X took us from a business plan on paper to a running plant in under 18 months. Their single-team model removed every handover gap that usually kills timelines.","Rajiv Menon","Managing Director, Meridian Dairy"],
+    ["What sets them apart is commercial judgement. Every engineering decision was framed in terms of ROI, payback, and operating cost — the language a board understands.","Sara Al-Farsi","CEO, Helix Pharma"],
+    ["We had three consultants fail before Scale X. They secured our environmental clearance in one cycle and never missed a statutory deadline.","Anil Deshpande","Director, Vertex Chemicals"],
+    ["From machinery negotiation in Europe to commissioning in Nairobi, one team owned everything. That accountability is priceless.","Grace Wanjiru","Founder, Crystal Beverages"]
+  ],
+  articles: [
+    ["Whitepaper","June 2026","Feasibility First: Why 40% of Greenfield Plants Miss Their Business Case","The most expensive engineering mistakes are made before engineering begins.","12 min read"],
+    ["Regulatory Update","May 2026","The New Rules of Environmental Clearance for Process Industries","Recent amendments have changed documentation, public hearing, and monitoring requirements.","8 min read"],
+    ["Technical Article","May 2026","Designing Dairy Plants for a 2-Degree World","Energy-recovery pasteurisation and solar-thermal integration can cut energy intensity by a third.","10 min read"],
+    ["Case Study","April 2026","14-Month Turnkey Delivery of a 200 KLPD Dairy Plant","How parallel-tracked approvals and modular skids compressed a two-year schedule.","15 min read"],
+    ["Industry Blog","March 2026","Machinery Procurement: The Hidden 15% Most Buyers Leave on the Table","Structured tendering and Incoterm strategy routinely recover double-digit savings.","7 min read"],
+    ["Technical Article","February 2026","From HACCP to FSSC 22000: A Practical Certification Roadmap","A stage-by-stage route to food safety certification teams can sustain.","9 min read"]
+  ],
+  faqs: [
+    ["What does 'turnkey' actually include?","Everything from feasibility studies, DPR, and statutory approvals through engineering, procurement, construction management, installation, commissioning, and stabilised commercial production. You receive a running plant — not a stack of drawings."],
+    ["Do you work outside India?","Yes. We have delivered projects across the Middle East, Africa, and Southeast Asia, with procurement networks in Europe and China."],
+    ["Can you help with only one stage, like approvals or a DPR?","Absolutely. Many clients engage us for a single service and expand the scope later. Every service stands on its own."],
+    ["How do you charge for projects?","Fixed-fee for studies and DPRs, milestone-based fees for turnkey delivery, and retainers for long-term advisory. Every proposal includes a transparent fee breakdown."],
+    ["What size of projects do you take on?","From compact $1M processing units to $50M+ greenfield complexes. Smaller projects get the same engineering rigour."],
+    ["How long does a typical greenfield project take?","A mid-size food processing plant typically runs 12–18 months from feasibility sign-off to commercial production. Complex regulated facilities run 18–30 months."]
+  ],
+  offices: [
+    ["Mumbai, India","Global Headquarters","Level 21, One Horizon Centre, Bandra Kurla Complex"],
+    ["Dubai, UAE","Middle East & Africa","Office 1804, Jumeirah Lake Towers"],
+    ["Singapore","Asia-Pacific","#12-01, Marina Bay Financial Centre"],
+    ["Nairobi, Kenya","East Africa","Westlands Business Park, Waiyaki Way"]
+  ]
+};
+
+/* ================= RENDER ================= */
+const $ = (s) => document.querySelector(s);
+const esc = (s) => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+// Hero headline word animation
+"Build Tomorrow’s Manufacturing Today.".split(" ").forEach((w, i) => {
+  const s = document.createElement("span");
+  s.className = "w" + (i >= 2 ? " grad-text" : "");
+  s.textContent = w; s.style.animationDelay = (0.15 + i * 0.12) + "s"; s.style.marginRight = ".28em";
+  $("#headline").appendChild(s);
+});
+
+// Stats with counters
+$("#stats").innerHTML = DATA.stats.map(([v, suf, l]) =>
+  `<div><b class="cnt" data-v="${v}" data-s="${suf}">0</b><span>${l}</span></div>`).join("");
+
+// Clients marquee (doubled for loop)
+$("#clients").innerHTML = [...DATA.clients, ...DATA.clients].map(c => `<span>🏭 ${c}</span>`).join("");
+
+// Values
+$("#values").innerHTML = DATA.values.map(([ic, t, x]) =>
+  `<div class="card rv"><div class="icon-tile">${ic}</div><h3 style="font-size:17px;margin-top:18px">${t}</h3>
+   <p style="color:var(--muted);font-size:14px;line-height:1.6;margin-top:8px">${x}</p></div>`).join("");
+
+// Services
+$("#svc-grid").innerHTML = DATA.services.map(([ic, t, x, items], n) =>
+  `<div class="card svc rv"><div style="display:flex;justify-content:space-between;align-items:start">
+     <div class="icon-tile">${ic}</div><span style="font-family:Manrope;font-weight:800;color:var(--line);font-size:14px">${String(n+1).padStart(2,"0")}</span></div>
+   <h3>${t}</h3><p>${x}</p><ul>${items.map(i => `<li>${i}</li>`).join("")}</ul></div>`).join("");
+
+// Industries
+$("#ind-grid").innerHTML = DATA.industries.map((name, i) =>
+  `<div class="card ind rv"><div class="icon-tile">${DATA.indIcons[i]}</div><h4>${name}</h4></div>`).join("");
+
+// Timeline
+$("#timeline").insertAdjacentHTML("beforeend", DATA.process.map(([t, x], i) =>
+  `<div class="t-item rv"><div class="t-num">${String(i+1).padStart(2,"0")}</div>
+   <div class="card"><h3>${t}</h3><p>${x}</p></div></div>`).join(""));
+
+// Project filters + grid
+const uniq = (k) => ["All", ...new Set(DATA.projects.map(p => p[k]))];
+const filterState = { i: "All", c: "All", y: "All" };
+$("#filters").innerHTML = [["i","Industry"],["c","Country"],["y","Completion Year"]].map(([k, l]) =>
+  `<div><label>${l}</label><select data-k="${k}">${uniq(k).map(o => `<option>${o}</option>`).join("")}</select></div>`).join("");
+document.querySelectorAll("#filters select").forEach(sel =>
+  sel.addEventListener("change", () => { filterState[sel.dataset.k] = sel.value; renderProjects(); }));
+
+function renderProjects() {
+  const list = DATA.projects.filter(p =>
+    (filterState.i === "All" || p.i === filterState.i) &&
+    (filterState.c === "All" || p.c === filterState.c) &&
+    (filterState.y === "All" || String(p.y) === filterState.y));
+  $("#proj-grid").innerHTML = list.map(p =>
+    `<div class="card proj">
+       <div class="proj-head scene"><div class="blueprint" style="position:absolute;inset:0"></div>
+         <span class="chip" style="position:relative">${p.i}</span><span class="chip dim" style="position:relative">${p.c} · ${p.y}</span></div>
+       <div class="proj-body"><h3>${p.t}</h3><p class="desc">${p.d}</p>
+         <dl><div><dt>Capacity</dt><dd>${p.cap}</dd></div><div><dt>Investment</dt><dd>${p.inv}</dd></div></dl>
+         <details><summary>View case detail ▾</summary>
+           <b>Challenge</b><p>${p.ch}</p><b>Solution</b><p>${p.so}</p>
+           <b>Technology</b><p>${p.te}</p><b>ROI</b><p>${p.roi}</p>
+           <blockquote>“${p.q}”<br><span style="font-style:normal;font-weight:600;font-size:12px">— ${p.cl}</span></blockquote>
+         </details></div></div>`).join("");
+}
+renderProjects();
+
+// Testimonials carousel
+let ti = 0, tTimer;
+function showTesti(n) {
+  ti = n;
+  const [q, name, role] = DATA.testimonials[n];
+  $("#t-quote").textContent = "“" + q + "”";
+  $("#t-name").textContent = name; $("#t-role").textContent = role;
+  document.querySelectorAll("#t-dots button").forEach((b, i) => b.classList.toggle("on", i === n));
+}
+$("#t-dots").innerHTML = DATA.testimonials.map((_, i) =>
+  `<button aria-label="Testimonial ${i+1}" onclick="showTesti(${i});clearInterval(tTimer);startTesti()"></button>`).join("");
+function startTesti() { tTimer = setInterval(() => showTesti((ti + 1) % DATA.testimonials.length), 6500); }
+showTesti(0); startTesti();
+
+// Articles
+$("#art-grid").innerHTML = DATA.articles.map(([cat, date, t, x, read]) =>
+  `<div class="card art rv"><div class="meta"><span class="cat">${cat}</span><span>${date}</span></div>
+   <h3>${t}</h3><p>${x}</p><span class="read">${read}</span></div>`).join("");
+
+// FAQ
+$("#faq").innerHTML = DATA.faqs.map(([q, a]) =>
+  `<details class="rv"><summary>${q}</summary><p>${a}</p></details>`).join("");
+
+// Offices
+$("#offices").innerHTML = DATA.offices.map(([city, role, addr]) =>
+  `<div class="office"><h4>📍 ${city}</h4><div class="role">${role}</div><p>${addr}</p></div>`).join("");
+
+$("#yr").textContent = new Date().getFullYear();
+
+/* ================= BEHAVIOUR ================= */
+// Navbar scroll + back-to-top
+addEventListener("scroll", () => {
+  $("#topnav").classList.toggle("scrolled", scrollY > 24);
+  $("#toTop").classList.toggle("show", scrollY > 600);
+  // timeline progress fill
+  const tl = $("#timeline"), r = tl.getBoundingClientRect();
+  const prog = Math.min(Math.max((innerHeight * 0.75 - r.top) / r.height, 0), 1);
+  $("#t-fill").style.height = (prog * 100) + "%";
+}, { passive: true });
+
+$("#toTop").addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+$("#hamburger").addEventListener("click", () => {
+  const m = $("#mobile-menu"); m.style.display = m.style.display === "block" ? "none" : "block";
+});
+document.querySelectorAll("#mobile-menu a").forEach(a =>
+  a.addEventListener("click", () => $("#mobile-menu").style.display = "none"));
+
+// Theme toggle (persisted)
+const themeBtn = $("#theme-btn");
+if (localStorage.getItem("sx-theme") === "dark" ||
+   (!localStorage.getItem("sx-theme") && matchMedia("(prefers-color-scheme: dark)").matches))
+  document.documentElement.classList.add("dark");
+themeBtn.addEventListener("click", () => {
+  const dark = document.documentElement.classList.toggle("dark");
+  localStorage.setItem("sx-theme", dark ? "dark" : "light");
+});
+
+// Scroll reveal
+const io = new IntersectionObserver((entries) => entries.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+}), { rootMargin: "-60px" });
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+// Animated counters
+const cio = new IntersectionObserver((entries) => entries.forEach(e => {
+  if (!e.isIntersecting) return;
+  const el = e.target, v = +el.dataset.v, suf = el.dataset.s, t0 = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - t0) / 1800, 1), eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(eased * v) + suf;
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+  cio.unobserve(el);
+}), { rootMargin: "-40px" });
+document.querySelectorAll(".cnt").forEach(el => cio.observe(el));
+
+// Form
+$("#inq-form").addEventListener("submit", (e) => {
+  e.preventDefault(); e.target.reset(); $("#form-ok").style.display = "block";
+});
+
+// Cookie consent
+if (!localStorage.getItem("sx-cookies")) $("#cookie").classList.add("show");
+function cookieDecide(v) { localStorage.setItem("sx-cookies", v); $("#cookie").classList.remove("show"); }
+</script>
+</body>
+</html>
