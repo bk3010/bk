@@ -51,8 +51,26 @@ function SkylineScene() {
 
 export default function Hero() {
   return (
-    <section className="hero-scene relative flex min-h-screen flex-col justify-center overflow-hidden pt-28 pb-16">
+    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-[#030507] pt-28 pb-16">
       <div className="blueprint-grid absolute inset-0 animate-grid-pan" aria-hidden="true" />
+      {/* hero artwork backdrop */}
+      <div
+        className="absolute inset-0 bg-no-repeat opacity-95 max-lg:opacity-50"
+        style={{
+          backgroundImage: "url(/hero-art.png)",
+          backgroundPosition: "82% center",
+          backgroundSize: "auto 100%",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(3,5,7,.94) 0%, rgba(3,5,7,.72) 34%, rgba(3,5,7,.34) 58%, rgba(3,5,7,.08) 76%, rgba(3,5,7,.35) 100%), linear-gradient(180deg, rgba(3,5,7,.5) 0%, transparent 22%, transparent 72%, rgba(3,5,7,.7) 100%)",
+        }}
+        aria-hidden="true"
+      />
       <div className="light-beam left-[15%] animate-beam" aria-hidden="true" />
       <div
         className="light-beam left-[60%] animate-beam"
