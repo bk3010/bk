@@ -1,182 +1,141 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import Counter from "./Counter";
 import Icon from "./Icon";
 import { stats } from "@/lib/data";
 
 const headline = ["Build", "Tomorrow’s", "Manufacturing", "Today."];
+const shadowRotation = ["#8B5CF6", "#F472B6", "#FBBF24", "#34D399"];
 
-function SkylineScene() {
-  return (
-    <svg
-      viewBox="0 0 1440 360"
-      preserveAspectRatio="xMidYMax slice"
-      className="absolute bottom-0 left-0 w-full text-cyan/25"
-      aria-hidden="true"
-    >
-      <g fill="none" stroke="currentColor" strokeWidth="1.5">
-        {/* factory silhouettes */}
-        <path d="M40 360V240l70 40v-40l70 40v-40l80 46v74" />
-        <path d="M120 240v-60h24v46" />
-        <path d="M300 360V190h90v170M320 190v-50h18l6 50M370 190v-36h16v36" />
-        <path d="M470 360V250l60 34v-34l60 34v-34l70 40v70" />
-        <path d="M700 360V150h110v210M726 150v-64h20l8 64M780 150v-42h18v42" />
-        <path d="M880 360V262h120v98M910 262v-40h22v40M950 262v-52h20v52" />
-        <path d="M1060 360V220l64 36v-36l64 36v-36l76 44v96" />
-        <path d="M1280 360V180h80v180M1300 180v-56h16l6 56" />
-        {/* cranes */}
-        <path d="M560 250V96h6v154M560 104h150l-24 22M710 104v26" />
-        <path d="M1130 220V80h6v140M1130 88h-118l20 20M1012 88v22" />
-        {/* tanks */}
-        <ellipse cx="230" cy="330" rx="34" ry="10" />
-        <path d="M196 330v-52a34 14 0 0 1 68 0v52" />
-        <ellipse cx="640" cy="336" rx="28" ry="8" />
-        <path d="M612 336v-44a28 12 0 0 1 56 0v44" />
-      </g>
-      {/* blinking beacons */}
-      <circle cx="563" cy="92" r="3" fill="#00C2FF">
-        <animate attributeName="opacity" values="1;0.15;1" dur="2.2s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="1133" cy="76" r="3" fill="#00C2FF">
-        <animate attributeName="opacity" values="0.15;1;0.15" dur="2.8s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="755" cy="86" r="3" fill="#0D5CFF">
-        <animate attributeName="opacity" values="1;0.2;1" dur="3.1s" repeatCount="indefinite" />
-      </circle>
-    </svg>
-  );
-}
+const pop = (delay: number) => ({
+  initial: { opacity: 0, scale: 0.6, y: 24 },
+  animate: { opacity: 1, scale: 1, y: 0 },
+  transition: { duration: 0.55, delay, ease: [0.34, 1.56, 0.64, 1] as const },
+});
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-[#030507] pt-28 pb-16">
-      <div className="blueprint-grid absolute inset-0 animate-grid-pan" aria-hidden="true" />
-      {/* hero artwork backdrop */}
+    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-cream pt-28 pb-16 dark:bg-ink-800">
+      {/* giant amber circle behind the text */}
       <div
-        className="absolute inset-0 bg-no-repeat opacity-95 max-lg:opacity-50"
-        style={{
-          backgroundImage: "url(/hero-art.png)",
-          backgroundPosition: "82% center",
-          backgroundSize: "auto 100%",
-        }}
+        className="absolute -left-40 top-1/2 h-[46rem] w-[46rem] -translate-y-1/2 rounded-full bg-tertiary/35 dark:bg-tertiary/15"
         aria-hidden="true"
       />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(3,5,7,.94) 0%, rgba(3,5,7,.72) 34%, rgba(3,5,7,.34) 58%, rgba(3,5,7,.08) 76%, rgba(3,5,7,.35) 100%), linear-gradient(180deg, rgba(3,5,7,.5) 0%, transparent 22%, transparent 72%, rgba(3,5,7,.7) 100%)",
-        }}
-        aria-hidden="true"
-      />
-      <div className="light-beam left-[15%] animate-beam" aria-hidden="true" />
-      <div
-        className="light-beam left-[60%] animate-beam"
-        style={{ animationDelay: "-4.5s" }}
-        aria-hidden="true"
-      />
-      <SkylineScene />
+      {/* dot field behind the image */}
+      <div className="blueprint-grid-light absolute right-0 top-0 h-full w-1/2 opacity-60 dark:opacity-25" aria-hidden="true" />
 
-      {/* floating orbs */}
-      <div className="absolute right-[12%] top-[18%] h-40 w-40 animate-float-slow rounded-full bg-royal/20 blur-3xl" aria-hidden="true" />
-      <div className="absolute left-[8%] top-[42%] h-56 w-56 animate-float rounded-full bg-cyan/10 blur-3xl" aria-hidden="true" />
+      {/* confetti */}
+      <div className="confetti-circle left-[46%] top-24 h-6 w-6 animate-float bg-secondary max-lg:hidden" aria-hidden="true" />
+      <div className="confetti-triangle left-[38%] bottom-24 animate-float-slow max-lg:hidden" aria-hidden="true" />
+      <div className="confetti-square right-[8%] top-28 h-5 w-5 animate-float bg-mint max-lg:hidden" aria-hidden="true" />
+      <div className="confetti-circle right-[42%] bottom-40 h-4 w-4 animate-float-slow border-4 border-accent bg-transparent max-lg:hidden" aria-hidden="true" />
 
-      <div className="relative mx-auto w-full max-w-7xl px-5 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="glass-dark inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-xs font-medium text-slate-200"
-        >
-          <span className="h-2 w-2 rounded-full bg-success" />
-          Global Turnkey Industrial Consultancy — From Idea to Industry
-        </motion.div>
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-5 lg:grid-cols-[1.1fr_1fr] lg:px-8">
+        <div>
+          <motion.div
+            {...pop(0)}
+            className="inline-flex items-center gap-2.5 rounded-full border-2 border-ink bg-white px-4 py-2 text-xs font-bold text-ink shadow-[3px_3px_0_0_#1E293B] dark:border-white/25 dark:bg-ink dark:text-white dark:shadow-[3px_3px_0_0_#0F172A]"
+          >
+            <span className="h-2.5 w-2.5 rounded-full bg-mint" />
+            From Idea to Industry — Turnkey &amp; Worldwide
+          </motion.div>
 
-        <h1 className="mt-7 max-w-4xl text-4xl font-extrabold leading-[1.08] text-white sm:text-6xl lg:text-7xl">
-          {headline.map((word, i) => (
-            <motion.span
-              key={word}
-              initial={{ opacity: 0, y: 34 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className={`mr-[0.28em] inline-block ${i >= 2 ? "gradient-text" : ""}`}
+          <h1 className="mt-7 text-4xl font-extrabold leading-[1.06] text-ink dark:text-white sm:text-6xl lg:text-[4.2rem]">
+            {headline.map((word, i) => (
+              <motion.span
+                key={word}
+                initial={{ opacity: 0, scale: 0.5, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.12 + i * 0.11, ease: [0.34, 1.56, 0.64, 1] }}
+                className={`mr-[0.26em] inline-block ${
+                  i === 1 ? "text-accent" : i === 3 ? "relative text-secondary" : ""
+                }`}
+              >
+                {word}
+                {i === 3 && (
+                  <span className="tech-rule absolute -bottom-3 left-0 w-full" aria-hidden="true" />
+                )}
+              </motion.span>
+            ))}
+          </h1>
+
+          <motion.p
+            {...pop(0.6)}
+            className="mt-7 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-300 sm:text-lg"
+          >
+            From feasibility studies to commercial production, Scale X delivers complete
+            engineering and industrial consulting solutions for businesses worldwide.
+          </motion.p>
+
+          <motion.div {...pop(0.75)} className="mt-9 flex flex-wrap items-center gap-4">
+            <Link
+              href="/contact"
+              className="gradient-brand group flex min-h-12 items-center gap-3 rounded-full px-7 py-3.5 text-sm font-bold text-white"
             >
-              {word}
-            </motion.span>
-          ))}
-        </h1>
+              Start Your Project
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-accent">
+                <Icon name="arrow" className="h-3.5 w-3.5" />
+              </span>
+            </Link>
+            <Link
+              href="/contact#consultation"
+              className="flex min-h-12 items-center gap-2.5 rounded-full border-2 border-ink bg-transparent px-7 py-3.5 text-sm font-bold text-ink transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:bg-tertiary dark:border-white/40 dark:text-white dark:hover:bg-ink-700"
+            >
+              <Icon name="play" className="h-4.5 w-4.5" />
+              Book Free Consultation
+            </Link>
+          </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.7 }}
-          className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg"
-        >
-          From feasibility studies to commercial production, Scale X delivers complete
-          engineering and industrial consulting solutions for businesses worldwide.
-        </motion.p>
+          <div className="mt-14 grid max-w-xl grid-cols-2 gap-4 sm:grid-cols-4">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                {...pop(0.9 + i * 0.08)}
+                className="rounded-2xl border-2 border-ink bg-white p-4 dark:border-white/25 dark:bg-ink"
+                style={{ boxShadow: `4px 4px 0 0 ${shadowRotation[i % 4]}` }}
+              >
+                <Counter
+                  value={s.value}
+                  suffix={s.suffix}
+                  className="font-heading text-2xl font-extrabold text-ink dark:text-white sm:text-3xl"
+                />
+                <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  {s.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
+        {/* blob-framed artwork */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.85 }}
-          className="mt-9 flex flex-wrap items-center gap-4"
+          initial={{ opacity: 0, scale: 0.8, rotate: 4 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 0.7, delay: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
+          className="relative mx-auto w-full max-w-md max-lg:hidden"
         >
-          <Link
-            href="/contact"
-            className="gradient-brand group flex items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-royal/30 transition hover:shadow-2xl hover:shadow-royal/50 hover:brightness-110"
-          >
-            Start Your Project
-            <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-          <Link
-            href="/contact#consultation"
-            className="glass-dark flex items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold text-white transition hover:border-cyan/50"
-          >
-            <Icon name="play" className="h-4.5 w-4.5 text-cyan" />
-            Book Free Consultation
-          </Link>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.05 }}
-          className="mt-16 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-4"
-        >
-          {stats.map((s) => (
-            <div key={s.label} className="bg-navy/70 px-6 py-5 backdrop-blur">
-              <Counter
-                value={s.value}
-                suffix={s.suffix}
-                className="font-heading text-3xl font-extrabold text-white sm:text-4xl"
-              />
-              <p className="mt-1 text-xs font-medium uppercase tracking-wider text-slate-400">
-                {s.label}
-              </p>
-            </div>
-          ))}
+          <div className="card-hover overflow-hidden rounded-tl-[5rem] rounded-tr-3xl rounded-br-[5rem] rounded-bl-3xl border-2 border-ink shadow-[10px_10px_0_0_#FBBF24] dark:border-white/25">
+            <Image
+              src="/hero-art.png"
+              alt="Illustration of a person standing before a blazing golden sky"
+              width={1024}
+              height={1024}
+              priority
+              className="h-auto w-full"
+            />
+          </div>
+          {/* sticker badge */}
+          <div className="absolute -left-8 -top-6 rotate-[-8deg] rounded-2xl border-2 border-ink bg-secondary px-4 py-2 font-heading text-sm font-extrabold text-white shadow-[4px_4px_0_0_#1E293B]">
+            500+ plants built
+          </div>
+          <div className="absolute -bottom-5 -right-4 rotate-[6deg] rounded-full border-2 border-ink bg-mint px-4 py-2 font-heading text-sm font-extrabold text-ink shadow-[4px_4px_0_0_#1E293B]">
+            Est. 2011
+          </div>
         </motion.div>
       </div>
-
-      {/* scroll hint */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
-        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 lg:block"
-        aria-hidden="true"
-      >
-        <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/25 p-1.5">
-          <motion.span
-            animate={{ y: [0, 12, 0], opacity: [1, 0.2, 1] }}
-            transition={{ duration: 1.8, repeat: Infinity }}
-            className="h-2 w-1 rounded-full bg-cyan"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }

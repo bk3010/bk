@@ -3,25 +3,27 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-navy: #071b34;
-  --color-navy-800: #0a2547;
-  --color-navy-700: #0e315e;
-  --color-royal: #0d5cff;
-  --color-royal-600: #0a4be0;
-  --color-cyan: #00c2ff;
-  --color-mist: #f7f9fc;
-  --color-ink: #101828;
-  --color-success: #00c48c;
+  /* Playful Geometric palette */
+  --color-cream: #fffdf5;
+  --color-ink: #1e293b;
+  --color-ink-800: #0f172a;
+  --color-ink-700: #334155;
+  --color-accent: #8b5cf6;
+  --color-accent-600: #7c3aed;
+  --color-secondary: #f472b6;
+  --color-tertiary: #fbbf24;
+  --color-mint: #34d399;
 
-  --font-heading: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-outfit), system-ui, sans-serif;
+  --font-body: var(--font-jakarta), system-ui, sans-serif;
 
   --animate-float: float 7s ease-in-out infinite;
   --animate-float-slow: float 11s ease-in-out infinite;
   --animate-marquee: marquee 36s linear infinite;
   --animate-pulse-ring: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-grid-pan: grid-pan 24s linear infinite;
-  --animate-beam: beam 9s ease-in-out infinite;
+  --animate-grid-pan: grid-pan 30s linear infinite;
+  --animate-beam: spin-slow 24s linear infinite;
+  --animate-wiggle: wiggle 0.5s ease-in-out;
 
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
@@ -37,11 +39,16 @@
   }
   @keyframes grid-pan {
     from { background-position: 0 0; }
-    to { background-position: 64px 64px; }
+    to { background-position: 44px 44px; }
   }
-  @keyframes beam {
-    0%, 100% { opacity: 0.35; transform: translateX(-8%) rotate(12deg); }
-    50% { opacity: 0.7; transform: translateX(8%) rotate(12deg); }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    75% { transform: rotate(-3deg); }
   }
 }
 
@@ -51,112 +58,154 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-mist);
+  background-color: var(--color-cream);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
 }
 
 .dark body {
-  background-color: var(--color-navy);
-  color: #e6ecf5;
+  background-color: var(--color-ink-800);
+  color: #e2e8f0;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 ::selection {
-  background: var(--color-royal);
-  color: #fff;
+  background: var(--color-tertiary);
+  color: var(--color-ink);
 }
 
-/* ---- Reusable premium primitives ---- */
+/* ---- Playful Geometric primitives ---- */
 
+/* Confetti gradient text: violet -> pink */
 .gradient-text {
-  background: linear-gradient(92deg, var(--color-royal) 0%, var(--color-cyan) 100%);
+  background: linear-gradient(92deg, var(--color-accent) 0%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
+/* The "Candy Button" surface: flat violet, chunky ink border, hard pop shadow.
+   Hover lifts (-2px, shadow grows), active presses (+2px, shadow shrinks). */
 .gradient-brand {
-  background: linear-gradient(120deg, var(--color-royal) 0%, var(--color-cyan) 100%);
+  background: var(--color-accent);
+  border: 2px solid var(--color-ink);
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+.gradient-brand:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--color-ink);
+  filter: none;
+}
+.gradient-brand:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--color-ink);
+}
+.dark .gradient-brand {
+  border-color: #0f172a;
+  box-shadow: 4px 4px 0 0 #0f172a;
+}
+.dark .gradient-brand:hover { box-shadow: 6px 6px 0 0 #0f172a; }
 
+/* "Sticker" light surface */
 .glass {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(16, 24, 40, 0.08);
+  background: #ffffff;
+  border: 2px solid var(--color-ink);
+  box-shadow: 6px 6px 0 0 #e2e8f0;
 }
 .dark .glass {
-  background: rgba(10, 37, 71, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-ink);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.45);
 }
 
+/* Dark chip / panel used on ink bands */
 .glass-dark {
-  background: rgba(7, 27, 52, 0.5);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(30, 41, 59, 0.85);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
+/* Sticker-card hover: the "wiggle" lift from the design system */
 .card-hover {
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, border-color 0.45s ease;
+  box-shadow: 6px 6px 0 0 #e2e8f0;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
 }
 .card-hover:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px -16px rgba(7, 27, 52, 0.22);
+  transform: rotate(-1deg) scale(1.02);
+  box-shadow: 8px 8px 0 0 var(--color-secondary);
 }
+.dark .card-hover { box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.45); }
+.dark .card-hover:hover { box-shadow: 8px 8px 0 0 var(--color-secondary); }
 
-/* Blueprint engineering grid backdrop */
+/* Polka-dot pattern — light dots for ink bands */
 .blueprint-grid {
-  background-image:
-    linear-gradient(rgba(0, 194, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 194, 255, 0.07) 1px, transparent 1px);
-  background-size: 64px 64px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
 }
 
+/* Polka-dot pattern — ink dots for cream sections */
 .blueprint-grid-light {
-  background-image:
-    linear-gradient(rgba(13, 92, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(13, 92, 255, 0.05) 1px, transparent 1px);
-  background-size: 64px 64px;
+  background-image: radial-gradient(rgba(30, 41, 59, 0.14) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
 }
 
-/* Cinematic hero backdrop */
+/* Ink band (testimonials, footer newsletter, achievements) */
 .hero-scene {
-  background:
-    radial-gradient(1100px 520px at 82% -10%, rgba(0, 194, 255, 0.22), transparent 60%),
-    radial-gradient(900px 620px at 8% 108%, rgba(13, 92, 255, 0.3), transparent 60%),
-    linear-gradient(180deg, #071b34 0%, #0a2547 55%, #071b34 100%);
+  background: var(--color-ink);
 }
 
+/* Decorative beam repurposed as a soft violet glow blob on ink bands */
 .light-beam {
   position: absolute;
-  width: 42rem;
-  height: 200%;
-  top: -50%;
-  background: linear-gradient(90deg, transparent, rgba(0, 194, 255, 0.08), transparent);
-  filter: blur(6px);
+  width: 22rem;
+  height: 22rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 65%);
   pointer-events: none;
 }
 
-/* Thin technical rule used under section eyebrows */
+/* Squiggle rule (replaces the thin tech line) */
 .tech-rule {
-  height: 1px;
-  background: linear-gradient(90deg, var(--color-cyan), transparent);
+  height: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='8' viewBox='0 0 40 8'%3E%3Cpath d='M0 4 Q5 0 10 4 T20 4 T30 4 T40 4' fill='none' stroke='%238B5CF6' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 40px 8px;
+}
+
+/* Confetti shapes for decorating sections */
+.confetti-circle,
+.confetti-triangle,
+.confetti-square {
+  position: absolute;
+  pointer-events: none;
+}
+.confetti-circle { border-radius: 9999px; }
+.confetti-square { border-radius: 4px; transform: rotate(12deg); }
+.confetti-triangle {
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 24px solid var(--color-tertiary);
+  transform: rotate(-14deg);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(13, 92, 255, 0.35);
+  background: var(--color-accent);
   border-radius: 8px;
+  border: 2px solid var(--color-cream);
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(13, 92, 255, 0.6); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-600); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -165,4 +214,7 @@ h1, h2, h3, h4, h5, h6 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .card-hover:hover,
+  .gradient-brand:hover,
+  .gradient-brand:active { transform: none; }
 }

@@ -18,7 +18,7 @@ export default function FloatingCTA() {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
-        className={`glass flex h-11 w-11 items-center justify-center rounded-full text-navy shadow-lg transition-all duration-300 dark:text-white ${
+        className={`glass flex h-11 w-11 items-center justify-center rounded-full text-ink transition-all duration-300 dark:text-white ${
           showTop ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
         }`}
       >
@@ -29,9 +29,9 @@ export default function FloatingCTA() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="relative flex h-13 w-13 items-center justify-center rounded-full bg-success text-white shadow-xl shadow-success/40 transition hover:scale-105"
+        className="relative flex h-13 w-13 items-center justify-center rounded-full border-2 border-ink bg-mint text-ink shadow-[4px_4px_0_0_#1E293B] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:shadow-[5px_5px_0_0_#1E293B]"
       >
-        <span className="absolute inset-0 animate-pulse-ring rounded-full bg-success" aria-hidden="true" />
+        <span className="absolute inset-0 animate-pulse-ring rounded-full bg-mint" aria-hidden="true" />
         <Icon name="whatsapp" className="relative h-6 w-6" />
       </a>
     </div>

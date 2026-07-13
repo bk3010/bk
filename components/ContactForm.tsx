@@ -5,18 +5,18 @@ import Icon from "./Icon";
 import { industries, services } from "@/lib/data";
 
 const inputClass =
-  "w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-navy placeholder:text-slate-400 focus:border-royal focus:outline-none focus:ring-2 focus:ring-royal/20 dark:border-white/15 dark:bg-navy-800 dark:text-white dark:placeholder:text-slate-500";
+  "w-full rounded-lg border-2 border-slate-300 bg-white px-4 py-3 text-sm text-ink placeholder:text-slate-400 transition-all duration-200 focus:border-accent focus:shadow-[4px_4px_0_0_#8B5CF6] focus:outline-none dark:border-white/20 dark:bg-ink dark:text-white dark:placeholder:text-slate-500";
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
 
   if (sent) {
     return (
-      <div className="flex h-full min-h-80 flex-col items-center justify-center rounded-3xl border border-success/30 bg-success/5 p-10 text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-success/15 text-success">
+      <div className="flex h-full min-h-80 flex-col items-center justify-center rounded-3xl border border-mint/30 bg-mint/5 p-10 text-center">
+        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-mint/15 text-mint">
           <Icon name="check" className="h-8 w-8" />
         </span>
-        <h3 className="mt-6 font-heading text-2xl font-bold text-navy dark:text-white">
+        <h3 className="mt-6 font-heading text-2xl font-bold text-ink dark:text-white">
           Inquiry received.
         </h3>
         <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-600 dark:text-slate-300">
@@ -37,31 +37,31 @@ export default function ContactForm() {
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Full Name *
           </span>
           <input required name="name" placeholder="Your name" className={inputClass} />
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Company
           </span>
           <input name="company" placeholder="Company name" className={inputClass} />
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Work Email *
           </span>
           <input required type="email" name="email" placeholder="you@company.com" className={inputClass} />
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Phone / WhatsApp
           </span>
           <input name="phone" placeholder="+91 ..." className={inputClass} />
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Industry
           </span>
           <select name="industry" className={inputClass} defaultValue="">
@@ -74,7 +74,7 @@ export default function ContactForm() {
           </select>
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Service Needed
           </span>
           <select name="service" className={inputClass} defaultValue="">
@@ -89,7 +89,7 @@ export default function ContactForm() {
         </label>
       </div>
       <label className="block">
-        <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+        <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
           Tell us about your project *
         </span>
         <textarea
@@ -102,7 +102,7 @@ export default function ContactForm() {
       </label>
       <button
         type="submit"
-        className="gradient-brand group flex w-full items-center justify-center gap-2.5 rounded-full px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-royal/30 transition hover:brightness-110 sm:w-auto"
+        className="gradient-brand group flex w-full items-center justify-center gap-2.5 rounded-full px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition hover:brightness-110 sm:w-auto"
       >
         Send Inquiry
         <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />

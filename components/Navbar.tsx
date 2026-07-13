@@ -13,7 +13,7 @@ const links = [
   { href: "/services", label: "Services", mega: true },
   { href: "/industries", label: "Industries" },
   { href: "/projects", label: "Projects" },
-  { href: "/knowledge", label: "Knowledge Center" },
+  { href: "/knowledge", label: "Knowledge" },
   { href: "/careers", label: "Careers" },
 ];
 
@@ -41,7 +41,7 @@ function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="Toggle dark mode"
-      className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-slate-200 transition hover:border-cyan hover:text-cyan"
+      className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink bg-white text-ink transition-all duration-300 hover:bg-tertiary dark:border-white/25 dark:bg-ink dark:text-white dark:hover:bg-ink-700"
     >
       <Icon name={dark ? "sun" : "moon"} className="h-4.5 w-4.5" />
     </button>
@@ -71,11 +71,13 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-dark shadow-[0_8px_32px_rgba(7,27,52,0.35)]" : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b-2 border-ink bg-cream/95 shadow-[0_4px_0_0_rgba(30,41,59,0.12)] backdrop-blur dark:border-white/20 dark:bg-ink-800/95"
+          : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 lg:px-8">
+      <nav className="mx-auto flex h-18 max-w-6xl items-center justify-between px-5 lg:px-8">
         <Link href="/" className="flex items-center gap-3" aria-label="Scale X home">
           <Logo />
         </Link>
@@ -91,10 +93,10 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition ${
+                  className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition ${
                     pathname.startsWith(link.href)
-                      ? "text-cyan"
-                      : "text-slate-200 hover:text-white"
+                      ? "bg-accent text-white"
+                      : "text-ink hover:bg-tertiary/60 dark:text-slate-200 dark:hover:bg-ink-700"
                   }`}
                 >
                   {link.label}
@@ -103,27 +105,31 @@ export default function Navbar() {
                 <AnimatePresence>
                   {megaOpen && (
                     <motion.div
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="absolute left-1/2 top-full w-[720px] -translate-x-1/2 pt-4"
+                      initial={{ opacity: 0, y: 12, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                      transition={{ duration: 0.25, ease: [0.34, 1.56, 0.64, 1] }}
+                      className="absolute left-1/2 top-full w-180 -translate-x-1/2 pt-4"
                     >
-                      <div className="glass-dark grid grid-cols-3 gap-1 rounded-2xl p-4 shadow-2xl">
-                        {services.map((s) => (
+                      <div className="grid grid-cols-3 gap-1 rounded-3xl border-2 border-ink bg-white p-4 shadow-[8px_8px_0_0_#E2E8F0] dark:border-white/25 dark:bg-ink dark:shadow-[8px_8px_0_0_rgba(0,0,0,0.45)]">
+                        {services.map((s, i) => (
                           <Link
                             key={s.slug}
                             href={`/services#${s.slug}`}
-                            className="group flex items-start gap-3 rounded-xl p-3 transition hover:bg-white/5"
+                            className="group flex items-start gap-3 rounded-2xl p-3 transition hover:bg-cream dark:hover:bg-ink-700"
                           >
-                            <span className="mt-0.5 text-cyan">
+                            <span
+                              className={`mt-0.5 ${
+                                ["text-accent", "text-secondary", "text-tertiary", "text-mint"][i % 4]
+                              }`}
+                            >
                               <Icon name={s.icon} className="h-5 w-5" />
                             </span>
                             <span>
-                              <span className="block text-sm font-semibold text-white group-hover:text-cyan">
+                              <span className="block text-sm font-bold text-ink group-hover:text-accent dark:text-white">
                                 {s.title}
                               </span>
-                              <span className="mt-0.5 block text-xs leading-snug text-slate-400">
+                              <span className="mt-0.5 block text-xs leading-snug text-slate-500 dark:text-slate-400">
                                 {s.items.slice(0, 2).join(" · ")}
                               </span>
                             </span>
@@ -138,10 +144,10 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                   pathname.startsWith(link.href)
-                    ? "text-cyan"
-                    : "text-slate-200 hover:text-white"
+                    ? "bg-accent text-white"
+                    : "text-ink hover:bg-tertiary/60 dark:text-slate-200 dark:hover:bg-ink-700"
                 }`}
               >
                 {link.label}
@@ -154,7 +160,7 @@ export default function Navbar() {
           <ThemeToggle />
           <Link
             href="/contact"
-            className="gradient-brand rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-royal/30 transition hover:shadow-xl hover:shadow-royal/40 hover:brightness-110"
+            className="gradient-brand rounded-full px-5 py-2.5 text-sm font-bold text-white"
           >
             Start Your Project
           </Link>
@@ -165,15 +171,15 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-white/15"
+            className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border-2 border-ink bg-white dark:border-white/25 dark:bg-ink"
           >
             <span
-              className={`h-0.5 w-5 bg-white transition-transform ${
+              className={`h-0.5 w-5 bg-ink transition-transform dark:bg-white ${
                 mobileOpen ? "translate-y-1 rotate-45" : ""
               }`}
             />
             <span
-              className={`h-0.5 w-5 bg-white transition-transform ${
+              className={`h-0.5 w-5 bg-ink transition-transform dark:bg-white ${
                 mobileOpen ? "-translate-y-1 -rotate-45" : ""
               }`}
             />
@@ -187,21 +193,21 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="glass-dark overflow-hidden lg:hidden"
+            className="overflow-hidden border-b-2 border-ink bg-cream dark:border-white/20 dark:bg-ink-800 lg:hidden"
           >
             <div className="space-y-1 px-5 py-4">
               {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-100 transition hover:bg-white/5"
+                  className="block rounded-2xl px-4 py-3 text-sm font-semibold text-ink transition hover:bg-tertiary/60 dark:text-slate-100 dark:hover:bg-ink-700"
                 >
                   {link.label}
                 </Link>
               ))}
               <Link
                 href="/contact"
-                className="gradient-brand mt-2 block rounded-xl px-4 py-3 text-center text-sm font-semibold text-white"
+                className="gradient-brand mt-2 block rounded-full px-4 py-3 text-center text-sm font-bold text-white"
               >
                 Start Your Project
               </Link>

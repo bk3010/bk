@@ -51,7 +51,7 @@ export default function ProjectsGrid() {
             <select
               value={filters[f.key]}
               onChange={(e) => setFilters((prev) => ({ ...prev, [f.key]: e.target.value }))}
-              className="rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-navy focus:border-royal focus:outline-none dark:border-white/15 dark:bg-navy-800 dark:text-white"
+              className="rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-ink focus:border-accent focus:outline-none dark:border-white/15 dark:bg-ink-800 dark:text-white"
             >
               {options[f.key].map((o) => (
                 <option key={o}>{o}</option>
@@ -66,8 +66,9 @@ export default function ProjectsGrid() {
 
       <motion.div layout className="grid gap-8 md:grid-cols-2">
         <AnimatePresence mode="popLayout">
-          {visible.map((p) => {
+          {visible.map((p, idx) => {
             const expanded = open === p.title;
+            const headerBg = ["bg-accent", "bg-secondary", "bg-tertiary", "bg-mint"][idx % 4];
             return (
               <motion.article
                 layout
@@ -76,27 +77,27 @@ export default function ProjectsGrid() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.35 }}
-                className="card-hover flex flex-col overflow-hidden rounded-3xl border border-slate-200/80 bg-white dark:border-white/10 dark:bg-navy-800"
+                className="card-hover flex flex-col overflow-hidden rounded-3xl border-2 border-ink bg-white dark:border-white/10 dark:bg-ink-800"
               >
-                {/* visual header */}
-                <div className="hero-scene relative h-44 overflow-hidden">
+                {/* visual header — confetti color rotation */}
+                <div className={`relative h-44 overflow-hidden border-b-2 border-ink ${headerBg}`}>
                   <div className="blueprint-grid absolute inset-0" aria-hidden="true" />
                   <div className="absolute inset-0 flex items-end justify-between p-5">
-                    <span className="glass-dark rounded-full px-4 py-1.5 text-xs font-semibold text-cyan">
+                    <span className="rounded-full border-2 border-ink bg-white px-4 py-1.5 text-xs font-bold text-ink shadow-[3px_3px_0_0_#1E293B]">
                       {p.industry}
                     </span>
-                    <span className="glass-dark rounded-full px-4 py-1.5 text-xs font-medium text-slate-200">
+                    <span className="rounded-full border-2 border-ink bg-ink px-4 py-1.5 text-xs font-bold text-white">
                       {p.country} · {p.year}
                     </span>
                   </div>
                   <Icon
                     name="factory"
-                    className="absolute right-6 top-5 h-16 w-16 text-cyan/30"
+                    className="absolute right-6 top-5 h-16 w-16 text-ink/25"
                   />
                 </div>
 
                 <div className="flex flex-1 flex-col p-7">
-                  <h3 className="font-heading text-xl font-bold text-navy dark:text-white">
+                  <h3 className="font-heading text-xl font-bold text-ink dark:text-white">
                     {p.title}
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
@@ -106,11 +107,11 @@ export default function ProjectsGrid() {
                   <dl className="mt-5 grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <dt className="text-xs uppercase tracking-wider text-slate-400">Capacity</dt>
-                      <dd className="mt-0.5 font-semibold text-navy dark:text-white">{p.capacity}</dd>
+                      <dd className="mt-0.5 font-semibold text-ink dark:text-white">{p.capacity}</dd>
                     </div>
                     <div>
                       <dt className="text-xs uppercase tracking-wider text-slate-400">Investment</dt>
-                      <dd className="mt-0.5 font-semibold text-navy dark:text-white">{p.investment}</dd>
+                      <dd className="mt-0.5 font-semibold text-ink dark:text-white">{p.investment}</dd>
                     </div>
                   </dl>
 
@@ -133,7 +134,7 @@ export default function ProjectsGrid() {
                             ] as const
                           ).map(([label, text]) => (
                             <div key={label}>
-                              <p className="text-xs font-semibold uppercase tracking-wider text-royal dark:text-cyan">
+                              <p className="text-xs font-semibold uppercase tracking-wider text-accent dark:text-secondary">
                                 {label}
                               </p>
                               <p className="mt-1 leading-relaxed text-slate-600 dark:text-slate-300">
@@ -141,9 +142,9 @@ export default function ProjectsGrid() {
                               </p>
                             </div>
                           ))}
-                          <blockquote className="rounded-2xl bg-mist p-4 italic leading-relaxed text-slate-600 dark:bg-navy-700 dark:text-slate-300">
+                          <blockquote className="rounded-2xl bg-cream p-4 italic leading-relaxed text-slate-600 dark:bg-ink-700 dark:text-slate-300">
                             “{p.testimonial}”
-                            <footer className="mt-2 not-italic text-xs font-semibold text-navy dark:text-white">
+                            <footer className="mt-2 not-italic text-xs font-semibold text-ink dark:text-white">
                               — {p.client}
                             </footer>
                           </blockquote>
@@ -154,7 +155,7 @@ export default function ProjectsGrid() {
 
                   <button
                     onClick={() => setOpen(expanded ? null : p.title)}
-                    className="group mt-6 flex items-center gap-2 self-start text-sm font-semibold text-royal transition hover:text-royal-600 dark:text-cyan"
+                    className="group mt-6 flex items-center gap-2 self-start text-sm font-semibold text-accent transition hover:text-accent-600 dark:text-secondary"
                   >
                     {expanded ? "Show less" : "View case detail"}
                     <Icon

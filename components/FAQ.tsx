@@ -15,19 +15,19 @@ export default function FAQ() {
         return (
           <div
             key={f.q}
-            className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white dark:border-white/10 dark:bg-navy-800"
+            className="overflow-hidden rounded-2xl border-2 border-ink bg-white dark:border-white/10 dark:bg-ink-800"
           >
             <button
               onClick={() => setOpen(expanded ? null : i)}
               aria-expanded={expanded}
               className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
             >
-              <span className="font-heading text-base font-bold text-navy dark:text-white">
+              <span className="font-heading text-base font-bold text-ink dark:text-white">
                 {f.q}
               </span>
               <span
                 className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition ${
-                  expanded ? "gradient-brand text-white" : "bg-mist text-navy dark:bg-navy-700 dark:text-white"
+                  expanded ? "gradient-brand text-white" : "bg-cream text-ink dark:bg-ink-700 dark:text-white"
                 }`}
               >
                 <Icon

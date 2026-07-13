@@ -29,7 +29,7 @@ const whyChoose = [
   {
     icon: "shield",
     title: "Regulatory Mastery",
-    text: "300+ statutory approvals secured with a first-cycle success rate above 90%.",
+    text: "300+ statutory approvals secured with a first-cycle mint rate above 90%.",
   },
   {
     icon: "globe",
@@ -54,7 +54,7 @@ export default function Home() {
       <Hero />
 
       {/* Trusted clients marquee */}
-      <section className="border-b border-slate-200/60 bg-white py-12 dark:border-white/5 dark:bg-navy-800">
+      <section className="border-b border-slate-200/60 bg-white py-12 dark:border-white/5 dark:bg-ink-800">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
             Trusted by manufacturers worldwide
@@ -64,7 +64,7 @@ export default function Home() {
               {[...clients, ...clients].map((c, i) => (
                 <span
                   key={`${c}-${i}`}
-                  className="flex items-center gap-2.5 whitespace-nowrap font-heading text-lg font-bold text-slate-400 transition hover:text-royal dark:text-slate-500 dark:hover:text-cyan"
+                  className="flex items-center gap-2.5 whitespace-nowrap font-heading text-lg font-bold text-slate-400 transition hover:text-accent dark:text-slate-500 dark:hover:text-secondary"
                 >
                   <Icon name="factory" className="h-5 w-5" />
                   {c}
@@ -80,12 +80,12 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
           <Reveal>
             <div className="flex items-center gap-3">
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-royal dark:text-cyan">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-accent dark:text-secondary">
                 About Scale X
               </span>
               <span className="tech-rule w-14" />
             </div>
-            <h2 className="mt-4 text-3xl font-extrabold text-navy dark:text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+            <h2 className="mt-4 text-3xl font-extrabold text-ink dark:text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
               The single partner behind
               <span className="gradient-text"> 500+ industrial projects</span>.
             </h2>
@@ -104,7 +104,7 @@ export default function Home() {
                 "Active projects across four continents",
               ].map((point) => (
                 <li key={point} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-200 sm:text-base">
-                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-success/15 text-success">
+                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-mint/15 text-mint">
                     <Icon name="check" className="h-3 w-3" />
                   </span>
                   {point}
@@ -113,7 +113,7 @@ export default function Home() {
             </ul>
             <Link
               href="/about"
-              className="group mt-9 inline-flex items-center gap-2.5 text-sm font-semibold text-royal transition hover:text-royal-600 dark:text-cyan"
+              className="group mt-9 inline-flex items-center gap-2.5 text-sm font-semibold text-accent transition hover:text-accent-600 dark:text-secondary"
             >
               Discover our story
               <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -141,17 +141,17 @@ export default function Home() {
                 ))}
               </div>
               <div className="relative mt-12 flex items-center gap-3 text-xs text-slate-300">
-                <span className="h-2 w-2 rounded-full bg-success" />
+                <span className="h-2 w-2 rounded-full bg-mint" />
                 ISO 9001 &amp; ISO 14001 Certified · Government Approved Consultants
               </div>
             </div>
-            <div className="absolute -right-4 -top-4 -z-10 h-full w-full rounded-[2rem] border border-royal/20" aria-hidden="true" />
+            <div className="absolute -right-4 -top-4 -z-10 h-full w-full rounded-[2rem] border border-accent/20" aria-hidden="true" />
           </Reveal>
         </div>
       </section>
 
       {/* Core services */}
-      <section className="bg-white px-5 py-24 dark:bg-navy-800 lg:px-8">
+      <section className="bg-white px-5 py-24 dark:bg-ink-800 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Core Services"
@@ -163,18 +163,18 @@ export default function Home() {
               <Reveal key={s.slug} delay={i * 0.06}>
                 <Link
                   href={`/services#${s.slug}`}
-                  className="card-hover group flex h-full flex-col rounded-3xl border border-slate-200/80 bg-mist p-8 dark:border-white/10 dark:bg-navy"
+                  className="card-hover group flex h-full flex-col rounded-3xl border-2 border-ink bg-cream p-8 dark:border-white/10 dark:bg-ink"
                 >
-                  <span className="gradient-brand flex h-13 w-13 items-center justify-center rounded-2xl text-white shadow-lg shadow-royal/25">
+                  <span className="gradient-brand flex h-13 w-13 items-center justify-center rounded-2xl text-white shadow-lg shadow-accent/25">
                     <Icon name={s.icon} className="h-6 w-6" />
                   </span>
-                  <h3 className="mt-6 font-heading text-xl font-bold text-navy dark:text-white">
+                  <h3 className="mt-6 font-heading text-xl font-bold text-ink dark:text-white">
                     {s.title}
                   </h3>
                   <p className="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                     {s.summary}
                   </p>
-                  <span className="mt-6 flex items-center gap-2 text-sm font-semibold text-royal dark:text-cyan">
+                  <span className="mt-6 flex items-center gap-2 text-sm font-semibold text-accent dark:text-secondary">
                     Explore
                     <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
@@ -185,7 +185,7 @@ export default function Home() {
           <Reveal className="mt-12 text-center">
             <Link
               href="/services"
-              className="gradient-brand inline-flex items-center gap-2.5 rounded-full px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-royal/30 transition hover:brightness-110"
+              className="gradient-brand inline-flex items-center gap-2.5 rounded-full px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition hover:brightness-110"
             >
               View All 16 Services
               <Icon name="arrow" className="h-4 w-4" />
@@ -207,12 +207,12 @@ export default function Home() {
               <Reveal key={ind.name} delay={i * 0.04}>
                 <Link
                   href="/industries"
-                  className="card-hover group flex h-full flex-col items-center gap-3 rounded-2xl border border-slate-200/80 bg-white p-6 text-center dark:border-white/10 dark:bg-navy-800"
+                  className="card-hover group flex h-full flex-col items-center gap-3 rounded-2xl border-2 border-ink bg-white p-6 text-center dark:border-white/10 dark:bg-ink-800"
                 >
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-royal/8 text-royal transition group-hover:bg-royal group-hover:text-white dark:bg-cyan/10 dark:text-cyan dark:group-hover:bg-cyan dark:group-hover:text-navy">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/8 text-accent transition group-hover:bg-accent group-hover:text-white dark:bg-secondary/10 dark:text-secondary dark:group-hover:bg-secondary dark:group-hover:text-ink">
                     <Icon name={ind.icon} className="h-6 w-6" />
                   </span>
-                  <span className="text-sm font-semibold text-navy dark:text-white">
+                  <span className="text-sm font-semibold text-ink dark:text-white">
                     {ind.name}
                   </span>
                 </Link>
@@ -222,7 +222,7 @@ export default function Home() {
           <Reveal className="mt-10 text-center">
             <Link
               href="/industries"
-              className="group inline-flex items-center gap-2.5 text-sm font-semibold text-royal transition hover:text-royal-600 dark:text-cyan"
+              className="group inline-flex items-center gap-2.5 text-sm font-semibold text-accent transition hover:text-accent-600 dark:text-secondary"
             >
               See all industries
               <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -232,7 +232,7 @@ export default function Home() {
       </section>
 
       {/* Idea to Industry process */}
-      <section className="relative overflow-hidden bg-white px-5 py-24 dark:bg-navy-800 lg:px-8">
+      <section className="relative overflow-hidden bg-white px-5 py-24 dark:bg-ink-800 lg:px-8">
         <div className="blueprint-grid-light absolute inset-0 dark:opacity-30" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl">
           <SectionHeading
@@ -255,10 +255,10 @@ export default function Home() {
             {whyChoose.map((w, i) => (
               <Reveal key={w.title} delay={i * 0.06}>
                 <div className="card-hover glass h-full rounded-3xl p-8">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-royal/25 text-royal dark:border-cyan/25 dark:text-cyan">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-accent/25 text-accent dark:border-secondary/25 dark:text-secondary">
                     <Icon name={w.icon} className="h-6 w-6" />
                   </span>
-                  <h3 className="mt-5 font-heading text-lg font-bold text-navy dark:text-white">
+                  <h3 className="mt-5 font-heading text-lg font-bold text-ink dark:text-white">
                     {w.title}
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
@@ -297,15 +297,15 @@ export default function Home() {
               <Reveal key={a.title} delay={i * 0.08}>
                 <Link
                   href="/knowledge"
-                  className="card-hover group flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white p-8 dark:border-white/10 dark:bg-navy-800"
+                  className="card-hover group flex h-full flex-col rounded-3xl border-2 border-ink bg-white p-8 dark:border-white/10 dark:bg-ink-800"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="rounded-full bg-royal/8 px-3.5 py-1.5 text-xs font-semibold text-royal dark:bg-cyan/10 dark:text-cyan">
+                    <span className="rounded-full bg-accent/8 px-3.5 py-1.5 text-xs font-semibold text-accent dark:bg-secondary/10 dark:text-secondary">
                       {a.category}
                     </span>
                     <span className="text-xs text-slate-400">{a.date}</span>
                   </div>
-                  <h3 className="mt-5 font-heading text-lg font-bold leading-snug text-navy transition group-hover:text-royal dark:text-white dark:group-hover:text-cyan">
+                  <h3 className="mt-5 font-heading text-lg font-bold leading-snug text-ink transition group-hover:text-accent dark:text-white dark:group-hover:text-secondary">
                     {a.title}
                   </h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">

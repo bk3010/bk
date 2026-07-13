@@ -38,7 +38,7 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-navy text-slate-300">
+    <footer className="relative overflow-hidden bg-ink text-slate-300">
       <div className="blueprint-grid absolute inset-0 opacity-40" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         {/* Newsletter band */}
@@ -57,7 +57,7 @@ export default function Footer() {
               type="email"
               required
               placeholder="Work email address"
-              className="w-full rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm text-white placeholder:text-slate-500 focus:border-cyan focus:outline-none"
+              className="w-full rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm text-white placeholder:text-slate-500 focus:border-secondary focus:outline-none"
             />
             <button
               type="submit"
@@ -75,11 +75,11 @@ export default function Footer() {
               {site.description}
             </p>
             <div className="mt-6 space-y-2.5 text-sm">
-              <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 transition hover:text-cyan">
-                <Icon name="phone" className="h-4 w-4 text-cyan" /> {site.phone}
+              <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="flex items-center gap-3 transition hover:text-secondary">
+                <Icon name="phone" className="h-4 w-4 text-secondary" /> {site.phone}
               </a>
-              <a href={`mailto:${site.email}`} className="flex items-center gap-3 transition hover:text-cyan">
-                <Icon name="mail" className="h-4 w-4 text-cyan" /> {site.email}
+              <a href={`mailto:${site.email}`} className="flex items-center gap-3 transition hover:text-secondary">
+                <Icon name="mail" className="h-4 w-4 text-secondary" /> {site.email}
               </a>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function Footer() {
                 <ul className="mt-4 space-y-2.5">
                   {col.links.map((l) => (
                     <li key={l.label}>
-                      <Link href={l.href} className="text-sm transition hover:text-cyan">
+                      <Link href={l.href} className="text-sm transition hover:text-secondary">
                         {l.label}
                       </Link>
                     </li>
@@ -122,10 +122,10 @@ export default function Footer() {
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="transition hover:text-cyan">Privacy Policy</Link>
-            <Link href="/terms" className="transition hover:text-cyan">Terms of Service</Link>
+            <Link href="/privacy" className="transition hover:text-secondary">Privacy Policy</Link>
+            <Link href="/terms" className="transition hover:text-secondary">Terms of Service</Link>
             <span className="hidden items-center gap-1.5 sm:flex">
-              <span className="h-1.5 w-1.5 rounded-full bg-success" />
+              <span className="h-1.5 w-1.5 rounded-full bg-mint" />
               ISO 9001 · ISO 14001 Certified
             </span>
           </div>

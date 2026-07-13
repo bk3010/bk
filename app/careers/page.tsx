@@ -61,11 +61,11 @@ export default function CareersPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {benefits.map((b, i) => (
               <Reveal key={b.title} delay={i * 0.06}>
-                <div className="card-hover h-full rounded-3xl border border-slate-200/80 bg-white p-8 dark:border-white/10 dark:bg-navy-800">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-royal/25 text-royal dark:border-cyan/25 dark:text-cyan">
+                <div className="card-hover h-full rounded-3xl border-2 border-ink bg-white p-8 dark:border-white/10 dark:bg-ink-800">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-accent/25 text-accent dark:border-secondary/25 dark:text-secondary">
                     <Icon name={b.icon} className="h-6 w-6" />
                   </span>
-                  <h2 className="mt-5 font-heading text-lg font-bold text-navy dark:text-white">
+                  <h2 className="mt-5 font-heading text-lg font-bold text-ink dark:text-white">
                     {b.title}
                   </h2>
                   <p className="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
@@ -114,10 +114,10 @@ export default function CareersPage() {
               <Reveal key={j.title} delay={i * 0.04}>
                 <Link
                   href="/contact"
-                  className="card-hover group flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200/80 bg-white p-6 dark:border-white/10 dark:bg-navy-800"
+                  className="card-hover group flex flex-wrap items-center justify-between gap-4 rounded-2xl border-2 border-ink bg-white p-6 dark:border-white/10 dark:bg-ink-800"
                 >
                   <div>
-                    <h3 className="font-heading text-base font-bold text-navy transition group-hover:text-royal dark:text-white dark:group-hover:text-cyan">
+                    <h3 className="font-heading text-base font-bold text-ink transition group-hover:text-accent dark:text-white dark:group-hover:text-secondary">
                       {j.title}
                     </h3>
                     <p className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500 dark:text-slate-400">
@@ -128,15 +128,15 @@ export default function CareersPage() {
                       <span
                         className={`rounded-full px-2.5 py-0.5 font-semibold ${
                           j.type === "Internship"
-                            ? "bg-cyan/10 text-cyan"
-                            : "bg-success/10 text-success"
+                            ? "bg-secondary/10 text-secondary"
+                            : "bg-mint/10 text-mint"
                         }`}
                       >
                         {j.type}
                       </span>
                     </p>
                   </div>
-                  <span className="flex items-center gap-2 text-sm font-semibold text-royal dark:text-cyan">
+                  <span className="flex items-center gap-2 text-sm font-semibold text-accent dark:text-secondary">
                     Apply
                     <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>

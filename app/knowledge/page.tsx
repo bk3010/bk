@@ -52,14 +52,14 @@ export default function KnowledgePage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((a, i) => (
               <Reveal key={a.title} delay={(i % 3) * 0.07}>
-                <article className="card-hover group flex h-full cursor-pointer flex-col rounded-3xl border border-slate-200/80 bg-white p-8 dark:border-white/10 dark:bg-navy-800">
+                <article className="card-hover group flex h-full cursor-pointer flex-col rounded-3xl border-2 border-ink bg-white p-8 dark:border-white/10 dark:bg-ink-800">
                   <div className="flex items-center justify-between">
-                    <span className="rounded-full bg-royal/8 px-3.5 py-1.5 text-xs font-semibold text-royal dark:bg-cyan/10 dark:text-cyan">
+                    <span className="rounded-full bg-accent/8 px-3.5 py-1.5 text-xs font-semibold text-accent dark:bg-secondary/10 dark:text-secondary">
                       {a.category}
                     </span>
                     <span className="text-xs text-slate-400">{a.date}</span>
                   </div>
-                  <h2 className="mt-5 font-heading text-lg font-bold leading-snug text-navy transition group-hover:text-royal dark:text-white dark:group-hover:text-cyan">
+                  <h2 className="mt-5 font-heading text-lg font-bold leading-snug text-ink transition group-hover:text-accent dark:text-white dark:group-hover:text-secondary">
                     {a.title}
                   </h2>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
@@ -69,7 +69,7 @@ export default function KnowledgePage() {
                     <span className="text-xs font-medium text-slate-400">{a.read}</span>
                     <Icon
                       name="arrow"
-                      className="h-4 w-4 text-royal transition-transform group-hover:translate-x-1 dark:text-cyan"
+                      className="h-4 w-4 text-accent transition-transform group-hover:translate-x-1 dark:text-secondary"
                     />
                   </div>
                 </article>
@@ -80,7 +80,7 @@ export default function KnowledgePage() {
       </section>
 
       {/* Downloads + videos */}
-      <section id="downloads" className="scroll-mt-24 bg-white px-5 py-24 dark:bg-navy-800 lg:px-8">
+      <section id="downloads" className="scroll-mt-24 bg-white px-5 py-24 dark:bg-ink-800 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2">
           <div>
             <SectionHeading
@@ -92,19 +92,19 @@ export default function KnowledgePage() {
             <ul className="space-y-4">
               {downloads.map((d, i) => (
                 <Reveal key={d.title} delay={i * 0.05}>
-                  <li className="card-hover group flex cursor-pointer items-center gap-4 rounded-2xl border border-slate-200/80 bg-mist p-5 dark:border-white/10 dark:bg-navy">
+                  <li className="card-hover group flex cursor-pointer items-center gap-4 rounded-2xl border-2 border-ink bg-cream p-5 dark:border-white/10 dark:bg-ink">
                     <span className="gradient-brand flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white">
                       <Icon name={d.icon} className="h-5 w-5" />
                     </span>
                     <span className="flex-1">
-                      <span className="block font-heading text-sm font-bold text-navy dark:text-white">
+                      <span className="block font-heading text-sm font-bold text-ink dark:text-white">
                         {d.title}
                       </span>
                       <span className="mt-0.5 block text-xs text-slate-400">{d.type}</span>
                     </span>
                     <Icon
                       name="download"
-                      className="h-5 w-5 text-royal transition-transform group-hover:translate-y-0.5 dark:text-cyan"
+                      className="h-5 w-5 text-accent transition-transform group-hover:translate-y-0.5 dark:text-secondary"
                     />
                   </li>
                 </Reveal>
@@ -121,18 +121,18 @@ export default function KnowledgePage() {
             <ul className="space-y-4">
               {videos.map((v, i) => (
                 <Reveal key={v.title} delay={i * 0.05}>
-                  <li className="card-hover group cursor-pointer overflow-hidden rounded-2xl border border-slate-200/80 dark:border-white/10">
+                  <li className="card-hover group cursor-pointer overflow-hidden rounded-2xl border-2 border-ink dark:border-white/10">
                     <div className="hero-scene relative flex h-36 items-center justify-center">
                       <div className="blueprint-grid absolute inset-0" aria-hidden="true" />
                       <span className="glass-dark relative flex h-14 w-14 items-center justify-center rounded-full text-white transition group-hover:scale-110">
-                        <Icon name="play" className="h-7 w-7 text-cyan" />
+                        <Icon name="play" className="h-7 w-7 text-secondary" />
                       </span>
                       <span className="glass-dark absolute bottom-3 right-3 rounded-full px-3 py-1 text-xs font-medium text-white">
                         {v.length}
                       </span>
                     </div>
-                    <div className="bg-mist p-5 dark:bg-navy">
-                      <h3 className="font-heading text-sm font-bold text-navy dark:text-white">
+                    <div className="bg-cream p-5 dark:bg-ink">
+                      <h3 className="font-heading text-sm font-bold text-ink dark:text-white">
                         {v.title}
                       </h3>
                     </div>

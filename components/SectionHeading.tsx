@@ -17,14 +17,14 @@ export default function SectionHeading({
   return (
     <Reveal className={`${isCenter ? "mx-auto text-center" : ""} mb-14 max-w-3xl`}>
       <div className={`flex items-center gap-3 ${isCenter ? "justify-center" : ""}`}>
-        <span className="text-xs font-semibold uppercase tracking-[0.28em] text-royal dark:text-cyan">
+        <span className="text-xs font-semibold uppercase tracking-[0.28em] text-accent dark:text-secondary">
           {eyebrow}
         </span>
         <span className="tech-rule w-14" />
       </div>
       <h2
         className={`mt-4 text-3xl font-extrabold sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15] ${
-          tone === "dark" ? "text-white" : "text-navy dark:text-white"
+          tone === "dark" ? "text-white" : "text-ink dark:text-white"
         }`}
       >
         {title}

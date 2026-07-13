@@ -38,11 +38,11 @@ export default function IndustriesPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((ind, i) => (
               <Reveal key={ind.name} delay={(i % 4) * 0.05}>
-                <div className="card-hover group h-full rounded-3xl border border-slate-200/80 bg-white p-7 dark:border-white/10 dark:bg-navy-800">
-                  <span className="flex h-13 w-13 items-center justify-center rounded-2xl bg-royal/8 text-royal transition group-hover:scale-105 group-hover:bg-royal group-hover:text-white dark:bg-cyan/10 dark:text-cyan dark:group-hover:bg-cyan dark:group-hover:text-navy">
+                <div className="card-hover group h-full rounded-3xl border-2 border-ink bg-white p-7 dark:border-white/10 dark:bg-ink-800">
+                  <span className="flex h-13 w-13 items-center justify-center rounded-2xl bg-accent/8 text-accent transition group-hover:scale-105 group-hover:bg-accent group-hover:text-white dark:bg-secondary/10 dark:text-secondary dark:group-hover:bg-secondary dark:group-hover:text-ink">
                     <Icon name={ind.icon} className="h-6.5 w-6.5" />
                   </span>
-                  <h2 className="mt-5 font-heading text-lg font-bold text-navy dark:text-white">
+                  <h2 className="mt-5 font-heading text-lg font-bold text-ink dark:text-white">
                     {ind.name}
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">

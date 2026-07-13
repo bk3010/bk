@@ -117,18 +117,18 @@ export default function ContactPage() {
             <Reveal key={c.title} delay={i * 0.06}>
               <a
                 href={c.href}
-                className="card-hover group flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white p-7 dark:border-white/10 dark:bg-navy-800"
+                className="card-hover group flex h-full flex-col rounded-3xl border-2 border-ink bg-white p-7 dark:border-white/10 dark:bg-ink-800"
                 {...(c.href.startsWith("http")
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
               >
-                <span className="gradient-brand flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-lg shadow-royal/25">
+                <span className="gradient-brand flex h-12 w-12 items-center justify-center rounded-2xl text-white shadow-lg shadow-accent/25">
                   <Icon name={c.icon} className="h-5.5 w-5.5" />
                 </span>
-                <h2 className="mt-5 font-heading text-base font-bold text-navy dark:text-white">
+                <h2 className="mt-5 font-heading text-base font-bold text-ink dark:text-white">
                   {c.title}
                 </h2>
-                <p className="mt-1.5 text-sm font-semibold text-royal dark:text-cyan">{c.detail}</p>
+                <p className="mt-1.5 text-sm font-semibold text-accent dark:text-secondary">{c.detail}</p>
                 <p className="mt-2 text-xs text-slate-400">{c.note}</p>
               </a>
             </Reveal>
@@ -137,7 +137,7 @@ export default function ContactPage() {
       </section>
 
       {/* Form + map */}
-      <section id="consultation" className="scroll-mt-24 bg-white px-5 py-24 dark:bg-navy-800 lg:px-8">
+      <section id="consultation" className="scroll-mt-24 bg-white px-5 py-24 dark:bg-ink-800 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1.15fr_1fr]">
           <div>
             <SectionHeading
@@ -155,17 +155,17 @@ export default function ContactPage() {
               title="Find us on the map"
             />
             <Reveal>
-              <div className="rounded-3xl border border-slate-200/80 bg-mist p-6 dark:border-white/10 dark:bg-navy">
+              <div className="rounded-3xl border-2 border-ink bg-cream p-6 dark:border-white/10 dark:bg-ink">
                 <WorldMap />
               </div>
             </Reveal>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {offices.map((o, i) => (
                 <Reveal key={o.city} delay={i * 0.05}>
-                  <div className="rounded-2xl border border-slate-200/80 bg-mist p-5 dark:border-white/10 dark:bg-navy">
+                  <div className="rounded-2xl border-2 border-ink bg-cream p-5 dark:border-white/10 dark:bg-ink">
                     <div className="flex items-center gap-2">
-                      <Icon name="pin" className="h-4 w-4 text-royal dark:text-cyan" />
-                      <h3 className="font-heading text-sm font-bold text-navy dark:text-white">
+                      <Icon name="pin" className="h-4 w-4 text-accent dark:text-secondary" />
+                      <h3 className="font-heading text-sm font-bold text-ink dark:text-white">
                         {o.city}
                       </h3>
                     </div>

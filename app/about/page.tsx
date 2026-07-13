@@ -42,11 +42,11 @@ export default function AboutPage() {
       <section className="px-5 py-24 lg:px-8">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
           <Reveal>
-            <div className="card-hover h-full rounded-3xl border border-slate-200/80 bg-white p-10 dark:border-white/10 dark:bg-navy-800">
-              <span className="gradient-brand flex h-13 w-13 items-center justify-center rounded-2xl text-white shadow-lg shadow-royal/25">
+            <div className="card-hover h-full rounded-3xl border-2 border-ink bg-white p-10 dark:border-white/10 dark:bg-ink-800">
+              <span className="gradient-brand flex h-13 w-13 items-center justify-center rounded-2xl text-white shadow-lg shadow-accent/25">
                 <Icon name="strategy" className="h-6 w-6" />
               </span>
-              <h2 className="mt-6 font-heading text-2xl font-extrabold text-navy dark:text-white">
+              <h2 className="mt-6 font-heading text-2xl font-extrabold text-ink dark:text-white">
                 Our Mission
               </h2>
               <p className="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">
@@ -58,11 +58,11 @@ export default function AboutPage() {
             </div>
           </Reveal>
           <Reveal delay={0.12}>
-            <div className="card-hover h-full rounded-3xl border border-slate-200/80 bg-white p-10 dark:border-white/10 dark:bg-navy-800">
-              <span className="gradient-brand flex h-13 w-13 items-center justify-center rounded-2xl text-white shadow-lg shadow-royal/25">
+            <div className="card-hover h-full rounded-3xl border-2 border-ink bg-white p-10 dark:border-white/10 dark:bg-ink-800">
+              <span className="gradient-brand flex h-13 w-13 items-center justify-center rounded-2xl text-white shadow-lg shadow-accent/25">
                 <Icon name="globe" className="h-6 w-6" />
               </span>
-              <h2 className="mt-6 font-heading text-2xl font-extrabold text-navy dark:text-white">
+              <h2 className="mt-6 font-heading text-2xl font-extrabold text-ink dark:text-white">
                 Our Vision
               </h2>
               <p className="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">
@@ -76,7 +76,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-white px-5 py-24 dark:bg-navy-800 lg:px-8">
+      <section className="bg-white px-5 py-24 dark:bg-ink-800 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Our Values"
@@ -85,11 +85,11 @@ export default function AboutPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {values.map((v, i) => (
               <Reveal key={v.title} delay={i * 0.06}>
-                <div className="card-hover h-full rounded-3xl border border-slate-200/80 bg-mist p-8 dark:border-white/10 dark:bg-navy">
-                  <span className="font-heading text-sm font-extrabold text-cyan">
+                <div className="card-hover h-full rounded-3xl border-2 border-ink bg-cream p-8 dark:border-white/10 dark:bg-ink">
+                  <span className="font-heading text-sm font-extrabold text-secondary">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-3 font-heading text-lg font-bold text-navy dark:text-white">
+                  <h3 className="mt-3 font-heading text-lg font-bold text-ink dark:text-white">
                     {v.title}
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
@@ -115,7 +115,7 @@ export default function AboutPage() {
                 <span className="absolute -left-[45px] top-1 flex h-4 w-4 items-center justify-center">
                   <span className="gradient-brand block h-3 w-3 rounded-full shadow-[0_0_0_5px_rgba(13,92,255,0.12)]" />
                 </span>
-                <p className="font-heading text-sm font-extrabold text-royal dark:text-cyan">
+                <p className="font-heading text-sm font-extrabold text-accent dark:text-secondary">
                   {m.year}
                 </p>
                 <p className="mt-1.5 leading-relaxed text-slate-700 dark:text-slate-200">
@@ -156,14 +156,14 @@ export default function AboutPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {leadership.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.06}>
-                <div className="card-hover h-full rounded-3xl border border-slate-200/80 bg-white p-8 dark:border-white/10 dark:bg-navy-800">
-                  <div className="gradient-brand flex h-16 w-16 items-center justify-center rounded-2xl font-heading text-xl font-extrabold text-white shadow-lg shadow-royal/25">
+                <div className="card-hover h-full rounded-3xl border-2 border-ink bg-white p-8 dark:border-white/10 dark:bg-ink-800">
+                  <div className="gradient-brand flex h-16 w-16 items-center justify-center rounded-2xl font-heading text-xl font-extrabold text-white shadow-lg shadow-accent/25">
                     {p.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
                   </div>
-                  <h3 className="mt-5 font-heading text-lg font-bold text-navy dark:text-white">
+                  <h3 className="mt-5 font-heading text-lg font-bold text-ink dark:text-white">
                     {p.name}
                   </h3>
-                  <p className="mt-1 text-sm font-semibold text-royal dark:text-cyan">{p.role}</p>
+                  <p className="mt-1 text-sm font-semibold text-accent dark:text-secondary">{p.role}</p>
                   <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                     {p.bio}
                   </p>
@@ -175,7 +175,7 @@ export default function AboutPage() {
       </section>
 
       {/* Global presence + certifications */}
-      <section className="bg-white px-5 py-24 dark:bg-navy-800 lg:px-8">
+      <section className="bg-white px-5 py-24 dark:bg-ink-800 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2">
           <div>
             <SectionHeading
@@ -187,10 +187,10 @@ export default function AboutPage() {
             <div className="grid gap-5 sm:grid-cols-2">
               {offices.map((o, i) => (
                 <Reveal key={o.city} delay={i * 0.06}>
-                  <div className="card-hover h-full rounded-2xl border border-slate-200/80 bg-mist p-6 dark:border-white/10 dark:bg-navy">
+                  <div className="card-hover h-full rounded-2xl border-2 border-ink bg-cream p-6 dark:border-white/10 dark:bg-ink">
                     <div className="flex items-center gap-2.5">
-                      <Icon name="pin" className="h-4.5 w-4.5 text-royal dark:text-cyan" />
-                      <h3 className="font-heading font-bold text-navy dark:text-white">
+                      <Icon name="pin" className="h-4.5 w-4.5 text-accent dark:text-secondary" />
+                      <h3 className="font-heading font-bold text-ink dark:text-white">
                         {o.city}, {o.country}
                       </h3>
                     </div>
@@ -215,8 +215,8 @@ export default function AboutPage() {
             <ul className="space-y-3.5">
               {certifications.map((c, i) => (
                 <Reveal key={c} delay={i * 0.05}>
-                  <li className="flex items-start gap-3.5 rounded-2xl border border-slate-200/80 bg-mist p-5 dark:border-white/10 dark:bg-navy">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success/15 text-success">
+                  <li className="flex items-start gap-3.5 rounded-2xl border-2 border-ink bg-cream p-5 dark:border-white/10 dark:bg-ink">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint/15 text-mint">
                       <Icon name="check" className="h-3.5 w-3.5" />
                     </span>
                     <span className="text-sm font-medium text-slate-700 dark:text-slate-200">

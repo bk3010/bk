@@ -40,17 +40,17 @@ export default function ServicesPage() {
               <Reveal key={s.slug} delay={(i % 2) * 0.08}>
                 <article
                   id={s.slug}
-                  className="card-hover flex h-full scroll-mt-28 flex-col rounded-3xl border border-slate-200/80 bg-white p-9 dark:border-white/10 dark:bg-navy-800"
+                  className="card-hover flex h-full scroll-mt-28 flex-col rounded-3xl border-2 border-ink bg-white p-9 dark:border-white/10 dark:bg-ink-800"
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <span className="gradient-brand flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-lg shadow-royal/25">
+                    <span className="gradient-brand flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-lg shadow-accent/25">
                       <Icon name={s.icon} className="h-7 w-7" />
                     </span>
                     <span className="font-heading text-sm font-extrabold text-slate-300 dark:text-slate-600">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <h2 className="mt-6 font-heading text-2xl font-extrabold text-navy dark:text-white">
+                  <h2 className="mt-6 font-heading text-2xl font-extrabold text-ink dark:text-white">
                     {s.title}
                   </h2>
                   <p className="mt-3 leading-relaxed text-slate-600 dark:text-slate-300">
@@ -62,7 +62,7 @@ export default function ServicesPage() {
                         key={item}
                         className="flex items-center gap-2.5 text-sm text-slate-700 dark:text-slate-200"
                       >
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan" />
+                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
                         {item}
                       </li>
                     ))}
